@@ -30,6 +30,7 @@ main .Cinsights {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.6rem;
     margin-top: 2rem;
+    
 }
 
 .Cinsights .community-subprogram-title {

@@ -250,8 +250,8 @@ main .resources_Card1 table tr:last-child td {
     color: var(--color-danger);
 }
 
-.resources_Card1 table td {
-    text-align: center;
+.resources_Card1 table td, .resources_Card1 table th {
+    text-align: left;
     
 }
 

@@ -248,8 +248,8 @@ main .resources_Card table tr:last-child td {
     color: var(--color-danger);
 }
 
-.resources_Card table td {
-    text-align: center;
+.resources_Card table td, .resources_Card table th {
+    text-align: left;
     
 }
 

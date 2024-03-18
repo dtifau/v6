@@ -957,6 +957,10 @@ def cAdd_resources():
         activity = request.form.get("activity")
         url = request.form.get("url")
      
+          # Validate URL
+        if not re.match(r'https?://(?:www\.)?\w+\.\w+', url):
+            flash('Invalid URL format. Please enter a valid URL starting with http:// or https:// and containing a valid domain.', 'existing_community')
+            return redirect(url_for('coordinator.cResources'))
         #Convert date
         date = convert_date(date1)
     

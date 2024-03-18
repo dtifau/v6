@@ -227,9 +227,14 @@ main .manageUser table tr:last-child td {
 
 }
 
-.manageUser table td {
+.manageUser table td , .manageUser table th{
+    text-align: left;
+}
+
+.manageUser table td:last-child , .manageUser table th:last-child{
     text-align: center;
 }
+
 
 .manageUser .pass-toggle-container {
     position: relative;
@@ -311,9 +316,6 @@ main .manageDepartment .jumbotron{
     
 }
 
-main .manageDepartment table td {
-    text-align: center;
-}
 
 
 
@@ -483,8 +485,16 @@ main .manageDepartment table td {
 
 }
 
-.manageDepartment table td {
+.manageDepartment table td, .manageDepartment table th {
     text-align: left;
+}
+
+.manageDepartment table td:last-child{
+    text-align: center;
+}
+
+.manageDepartment table th:last-child{
+    text-align: center;
 }
 
 .manageDepartment .pass-toggle-container {
