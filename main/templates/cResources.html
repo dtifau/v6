@@ -57,7 +57,7 @@ with_categories=true) %}
                         <td>{{row.user}}</td>
                         <td>{{ row.date}}</td>
                         <td style="max-width: 10rem; overflow: hidden; word-wrap: break-word; text-align: left;">{{row.activity}}</td>
-                        <td style="max-width: 10rem; overflow: hidden; word-wrap: break-word; text-align: left;"><a href="https://{{ row.url }}" style="color: rgb(19, 19, 173); text-decoration: underline;"
+                        <td style="max-width: 10rem; overflow: hidden; word-wrap: break-word; text-align: left;"><a href="{{ row.url }}" style="color: rgb(19, 19, 173); text-decoration: underline;"
                                 class="btn-edit" target="_blank">{{ row.url }}</a></td>
 
                         <td>

@@ -58,7 +58,7 @@ with_categories=true) %}
                         <td>{{ row.date}}</td>
                         <td style="max-width: 10rem; overflow: hidden; word-wrap: break-word; text-align: left;">{{row.activity}}</td>
                         <td style="max-width: 10rem; overflow: hidden; word-wrap: break-word; text-align: left;">
-                            <a href="https://{{ row.url }}" style="color: rgb(19, 19, 173); text-decoration: underline;" class="btn-edit" target="_blank">{{ row.url }}</a>
+                            <a href="{{ row.url }}" style="color: rgb(19, 19, 173); text-decoration: underline;" class="btn-edit" target="_blank">{{ row.url }}</a>
                         </td>
                         <td><a href="{{ url_for('dbModel.delete_resources', id=row.id,community=row.community, program=row.program) }}" class="btn-delete1" onclick="return confirm('Are you sure to delete?')">Delete</a></td>
                     
