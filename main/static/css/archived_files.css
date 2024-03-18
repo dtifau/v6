@@ -1,0 +1,131 @@
+/* -----Root Variable */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/* Root Variable */
+:root {
+    --color-primary: #7380ec;
+    --color-kaakbay: #2f9e36;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light)
+}
+
+.archived_files {
+    background-color: #2f9e36;
+    color: #ffffff;
+    padding: 10px;
+    border-top-left-radius: var(--border-radius-2);
+    /* Top left corner radius */
+    border-top-right-radius: var(--border-radius-2);
+    /* Top right corner radius */
+    display: flex;
+    /* Use flexbox to control alignment */
+    align-items: center;
+    /* Vertically center the content */
+    justify-content: flex-start;
+    /* Align content to the start */
+    height: 6rem;
+    margin-top: 1rem;
+}
+
+.archived_files-blue {
+    background-color: #303396;
+}
+
+
+.archived_files .folder_managed {
+    padding-right: 0.5rem;
+    /* Add some right padding to the lock icon */
+    font-size: 2.3rem;
+    /* Adjust the icon size as needed */
+    padding-left: 1rem;
+}
+
+.archived_files .filetxt {
+    padding-left: 0.5rem;
+    font-size: 2.3rem;
+}
+
+.archived_files_container {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    padding-bottom: 4rem;
+    position: relative;
+    border-bottom-left-radius: var(--border-radius-2);
+    /* Top left corner radius */
+    border-bottom-right-radius: var(--border-radius-2);
+    /* Top right corner radius */
+
+}
+
+.archived_files_container>div {
+    margin-top: 2rem;
+    margin-left: 1rem;
+}
+
+.archived_files_container a {
+    color: var(--color-kaakbay);
+    font-weight: 700;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.archived_files_container .blue-link {
+    color: #303396;
+}
+
+.archived_files_container a:hover {
+    text-decoration: none;
+    background-color: #303396;
+    color: white;
+
+}
+
+.archived_files_container .blue-link:hover {
+    text-decoration: none;
+    background-color: #303396;
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 4px;
+}
+
+.archived_files .literacy {
+    margin-top: 1rem !important;
+}
+
+
+
+@media screen and (max-width: 400px) {
+    .archived_files {
+        margin: 0 auto;
+        padding-top: 1rem;
+        width: 90%;
+    }
+
+    .archived_files_container {
+        margin: 0 auto;
+        padding-top: 1rem;
+        width: 90%;
+    }
+}

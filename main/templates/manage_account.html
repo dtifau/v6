@@ -1,0 +1,547 @@
+{% extends "admin_dashboard.html" %}
+{% block title %}Manage Account{% endblock %}
+{% block content %}
+
+<style>
+    /* Hide specific table rows by class */
+    .th {
+        display: none;
+    }
+</style>
+
+<div class="margin-top"></div>
+{% with messages = get_flashed_messages(category_filter=['existing_username', 'existing_program', 'edit_account',
+'delete_account', 'add_account', 'password_space', 'username_space'], with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="flash flash-{{ category }}">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<div class="manageUser">
+    <div class="jumbotron">
+        <h2 style="margin-bottom: 1rem;">Manage <b>Accounts</b>
+            <button type="button" class="btn-add" data-bs-toggle="modal" data-bs-target="#mymodal"
+                style="float: right;"><span class="material-symbols-sharp" style="float: right;">add</span></button>
+        </h2>
+        <div class="jumbo">
+            <table class="table">
+                <tr>
+                    <th class="th">ID</th>
+                    <th>Profile</th>
+                    <th>Username</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th class="th">Password</th>
+                    <th>Mobile #</th>
+                    <th>Role</th>
+                    <th>Department</th>
+                    <th>Program</th>
+                    <th style="width: 9rem;">Action</th>
+                </tr>
+                {% for row in users %}
+
+                <tr>
+                    <td class="th">{{ row.id }}</td>
+                    {% if profile_pictures_base64[row.id] %}
+                    <td><img src="data:image/jpeg;base64,{{ profile_pictures_base64[row.id] }}" alt="Profile Picture"
+                            style="width: 50px; height: 50px; border-radius: 50%; padding: 5px;"></td>
+                    {% else %}
+                    <td><img style="width: 50px; height: 50px; border-radius: 50%; padding: 5px;" class="invert-blue" src="/static/images/user-blue.png" alt="CESU-LOGO"></td>
+                    {% endif %}
+                    <td>{{ row.username }}</td>
+                    <td>{{ row.firstname|truncate(10, '...') }}</td>
+                    <td>{{ row.lastname|truncate(10, '...') }}</td>
+                    <td>{{ row.email|truncate(10, '...') }}</td>
+                    <td class="th"><span class="password-placeholder">{{ row.password }}</span></td>
+                    <td>{{ row.mobile_number }}</td>
+                    <td>{{ row.role }}</td>
+                    <td>{{ row.department_A }}</td>
+                    <td>{{ row.program|truncate(10, '...') }}</td>
+                    <td style="width: 9rem;">
+
+                        <a href="{{ url_for('dbModel.edit_account', id=row.id) }}" class="btn-edit"
+                            data-bs-toggle="modal" data-bs-target="#modaledit{{row.id}}">Update</a>
+                        <a href="{{ url_for('dbModel.delete_account', id=row.id)}}" class="btn-delete1"
+                            onclick="return confirm('Are you sure to delete?')">Delete</a>
+                    </td>
+                </tr>
+
+
+                <!-- Modal for Edit -->
+                <div id="modaledit{{row.id}}" class="modal">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Update Account</h4>
+                            </div>
+
+                            <div class="modal-body">
+                                <form action="{{ url_for('dbModel.edit_account') }}" method="POST"
+                                    enctype="multipart/form-data">
+
+                                    <div class="form-group">
+                                        <label>Username:</label>
+                                        <input type="text" class="form-control" name="new_username"
+                                            value="{{row.username}}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Firstname:</label>
+                                        <input type="text" class="form-control letters-with-space-input"
+                                            name="new_firstname" value="{{row.firstname}}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Lastname:</label>
+                                        <input type="text" class="form-control letters-with-space-input"
+                                            name="new_lastname" value="{{row.lastname}}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email:</label>
+                                        <input type="email" class="form-control" name="new_email" value="{{row.email}}"
+                                            required>
+                                    </div>
+                                    <div class="form-group pass-toggle-container">
+                                        <label>Password:</label>
+                                        <input type="password" class="form-control pass-input passedit"
+                                            name="new_password" value="********" id="pass" minlength="8" required>
+                                        <i class="toggle-password material-symbols-sharp"
+                                            id="toggle-edit-password">visibility</i>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Mobile Number:</label>
+                                        <input type="tel" class="form-control mobile-number mobile-input"
+                                            id="new_mobile_number" minlength="11" maxlength="11"
+                                            value="{{row.mobile_number}}" name="new_mobile_number" required>
+                                        <div class="mobile-number-error" style="color: red; display: none;">Mobile
+                                            number must start with 09</div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="new_role">Role:</label>
+                                        <select class="form-select" name="new_role" required>
+                                            <option value="{{row.role}}" selected style="display: none;">{{row.role}}
+                                            </option>
+                                            {% for r in role %}
+                                            <option value="{{ r.role }}">{{ r.role }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="new_department_A">Department:</label>
+                                        <select class="form-select" name="new_department_A" required>
+                                            <option value="{{row.department_A}}" selected style="display: none;">
+                                                {{row.department_A}}</option>
+                                            {% for d in department %}
+                                            <option value="{{ d.department_A}}">{{ d.department_F }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="new_program">Program:</label>
+                                        <select class="form-select" name="new_program" required>
+                                            <option value="{{row.program}}" selected style="display: none;">
+                                                {{row.program}}</option>
+                                            {% for p in program8 %}
+                                            <option value="{{ p.program }}">{{ p.program }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <input type="hidden" name="id" id="edit-id" value="{{row.id}}">
+                                    <div class="form-group">
+                                        <button class="btn-submit" type="submit">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn-close btn-secondary" data-bs-dismiss="modal"><span
+                                        class="material-symbols-sharp">close</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--end edit modal-->
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <!--Modal for adding -->
+        <div id="mymodal" class="modal">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">User information</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ url_for('dbModel.add_account') }}" method="POST" enctype="multipart/form-data">
+                            
+                            <div class="form-group">
+                                <label>Username:</label>
+                                <input type="text" class="form-control" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Firstname:</label>
+                                <input type="text" class="form-control letters-with-space-input" name="firstname"
+                                    required>
+
+                            </div>
+                            <div class="form-group">
+                                <label>Lastname:</label>
+                                <input type="text" class="form-control letters-with-space-input" name="lastname"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                            <div class="form-group pass-toggle-container">
+                                <label>Password:</label>
+                                <div class="toggle_password_eye">
+                                <input type="password" class="form-control pass-input passadd" name="password"
+                                    minlength="8" id="pass" minlength="8" required>
+                                   <i class="toggle-password2 material-symbols-sharp"
+                                    id="toggle-add-password">visibility</i>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Mobile Number:</label>
+                                <input type="tel" class="form-control mobile-input mobile-number2" id="mobile_number2"
+                                    name="mobile_number" minlength="11" maxlength="11" required>
+                                <div class="mobile-number-error2" style="color: red; display: none;">Mobile number must
+                                    start with 09</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="role">Role:</label>
+                                <select class="form-control" name="role" required>
+                                    <option value="" selected disabled>-- s e l e c t --</option>
+                                    <!-- Placeholder option -->
+                                    {% for r in role %}
+                                    <option value="{{ r.role }}">{{ r.role }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="department_A">Department:</label>
+                                <select class="form-control" name="department_A" required>
+                                    <option value="" selected disabled>-- s e l e c t --</option>
+                                    <!-- Placeholder option -->
+                                    {% for d in department %}
+                                    <option value="{{ d.department_A }}">{{ d.department_F }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="program">Program:</label>
+                                <select class="form-control" name="program" required>
+                                    <option value="" selected disabled>-- s e l e c t --</option>
+                                    <!-- Placeholder option -->
+                                    {% for p in program8 %}
+                                    <option value="{{ p.program }}">{{ p.program }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <button class="btn-submit btn-primary" type="submit">Add account</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"><span
+                                class="material-symbols-sharp">close</span></button>
+                    </div>
+                </div>
+            </div>
+        </div> <!--end add modal-->
+    </div><!--end jumbotronnnn-->
+</div>
+
+
+<!--MANAGE DEPARTMENT-->
+
+<div class="manageDepartment">
+    <div class="jumbotron">
+        <h2 style="margin-bottom: 1rem;">Manage <b>Department</b>
+            <button type="button" class="btn-add" data-bs-toggle="modal" data-bs-target="#mymodal_d"
+                style="float: right;"><span class="material-symbols-sharp" style="float: right;">add</span></button>
+        </h2>
+        <div class="jumbo">
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>Acronym</th>
+                    <th>Department</th>
+                    <th style="width: 9rem;">Action</th>
+
+                </tr>
+                {% for row in department %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.department_A }}</td>
+                    <td>{{ row.department_F|truncate(10, '...') }}</td>
+                    <td style="width: 9rem;">
+                        <a href="{{ url_for('dbModel.edit_department', id=row.id) }}" class="btn-edit delete_update_box"
+                            data-bs-toggle="modal" data-bs-target="#modaledit_d{{row.id}}"><span
+                                class="material-symbols-sharp update_department_btn">
+                                edit
+                            </span></a>
+                        <a href="{{ url_for('dbModel.delete_department', id=row.id)}}"
+                            class="btn-delete1 delete_update_box"
+                            onclick="return confirm('Are you sure to delete?')"><span
+                                class="material-symbols-sharp delete_department_btn">
+                                delete
+                            </span></a>
+                    </td>
+                </tr>
+
+                <!-- Modal for Edit -->
+                <div id="modaledit_d{{row.id}}" class="modal">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Update Account</h4>
+                            </div>
+
+                            <div class="modal-body">
+                                <form action="{{ url_for('dbModel.edit_department') }}" method="POST">
+                                    <div class="form-group">
+                                        <label>Acronym:</label>
+                                        <input type="text" class="form-control" name="new_department_A"
+                                            value="{{row.department_A}}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Department:</label>
+                                        <input type="text" class="form-control" name="new_department_F"
+                                            value="{{row.department_F}}" required>
+                                    </div>
+
+
+                                    <input type="hidden" name="id" id="edit-id" value="{{row.id}}">
+                                    <div class="form-group">
+                                        <button class="btn-submit" type="submit">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn-close btn-secondary" data-bs-dismiss="modal"><span
+                                        class="material-symbols-sharp">close</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--end edit modal-->
+                {% endfor %}
+            </table>
+        </div>
+
+        <!--Modal for adding -->
+        <div id="mymodal_d" class="modal">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Department information</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ url_for('dbModel.add_department') }}" method="POST">
+                            <div class="form-group">
+                                <label>Acronym:</label>
+                                <input type="text" class="form-control" name="department_A" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Department:</label>
+                                <input type="text" class="form-control" name="department_F" required>
+                            </div>
+
+                            <div class="form-group">
+                                <button class="btn-submit btn-primary" type="submit">Add department</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"><span
+                                class="material-symbols-sharp">close</span></button>
+                    </div>
+                </div>
+            </div>
+        </div> <!--end add modal-->
+    </div><!--end jumbotronnnn-->
+</div>
+
+
+
+<!--FOR PREVIEW IMAGE-->
+<script>
+    function previewImage(event, previewId) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var preview = document.getElementById(previewId);
+            preview.src = reader.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+
+
+<!--FOR MOBILE NUMBER-->
+<script>
+
+    const mobileNumberInputs = document.querySelectorAll('.mobile-number');
+
+    // Loop through each input element
+    mobileNumberInputs.forEach(function (input) {
+        // Get the corresponding error message element
+        const errorMessage = input.nextElementSibling;
+
+        // Event listener for input field
+        input.addEventListener('input', function (event) {
+            // Get the entered mobile number
+            const mobileNumber = event.target.value;
+
+            // Check if the entered mobile number starts with "09"
+            if (!mobileNumber.startsWith('09')) {
+                // If not, display the error message
+                errorMessage.style.display = 'block';
+                input.setCustomValidity('Mobile number must start with 09');
+            } else {
+                // If it starts with "09", hide the error message
+                errorMessage.style.display = 'none';
+                input.setCustomValidity('');
+            }
+        });
+    });
+
+
+    // Get all elements with the class 'mobile-number'
+    const mobileNumberInputs2 = document.querySelectorAll('.mobile-number2');
+
+    // Loop through each input element
+    mobileNumberInputs2.forEach(function (input) {
+        // Get the corresponding error message element
+        const errorMessage2 = input.nextElementSibling;
+
+        // Event listener for input field
+        input.addEventListener('input', function (event) {
+            // Get the entered mobile number
+            const mobileNumber2 = event.target.value;
+
+            // Check if the entered mobile number starts with "09"
+            if (!mobileNumber2.startsWith('09')) {
+                // If not, display the error message
+                errorMessage2.style.display = 'block';
+                input.setCustomValidity('Mobile number must start with 09');
+            } else {
+                // If it starts with "09", hide the error message
+                errorMessage2.style.display = 'none';
+                input.setCustomValidity('');
+            }
+        });
+    });
+</script>
+
+<script>
+    document.querySelectorAll(".mobile-input").forEach(function (element) {
+        element.addEventListener("input", function (event) {
+            // Remove any non-numeric characters from the input
+            this.value = this.value.replace(/\D/g, "");
+        });
+    });
+
+    // Remove any non-letter characters from the input
+    document.querySelectorAll(".letters-with-space-input").forEach(function (element) {
+        element.addEventListener("input", function (event) {
+            // Remove any non-letter and non-space characters from the input
+
+            this.value = this.value.replace(/[^A-Za-z\s]|(?<=\s)\s+|\s+(?=\s)/g, "");
+
+        });
+    });
+
+
+    document.querySelectorAll(".pass-input").forEach(function (element) {
+        element.addEventListener("input", function (event) {
+            // Remove any space characters from the input
+            this.value = this.value.replace(/\s/g, "");
+        });
+    });
+</script>
+
+
+<script>
+    var passwordPlaceholders = document.querySelectorAll('.password-placeholder');
+    passwordPlaceholders.forEach(function (placeholder) {
+        var password = placeholder.textContent;
+        var maskedPassword = "\u25CF".repeat(8);
+        placeholder.textContent = maskedPassword;
+        placeholder.style.color = 'rgb(92 92 92)';
+    });
+
+
+    // For password input validation
+    document.querySelectorAll(".pass-input").forEach(function (input) {
+        input.addEventListener("input", function () {
+            const password = this.value;
+
+            // Use regular expressions to check for the required criteria
+            const hasUppercase = /[A-Z]/.test(password);
+            const hasLowercase = /[a-z]/.test(password);
+            const hasDigit = /\d/.test(password);
+            const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
+
+            // Check if all criteria are met
+            if (hasUppercase && hasLowercase && hasDigit && hasSpecialChar) {
+                this.setCustomValidity("");
+            } else {
+                this.setCustomValidity("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.");
+            }
+        });
+    });
+
+</script>
+
+<script>
+    document.querySelectorAll(".toggle-password").forEach(function (togglePasswordIcon) {
+        togglePasswordIcon.addEventListener("click", function () {
+            const passwordInput = this.parentElement.querySelector(".passedit");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                this.textContent = "visibility_off";
+            } else {
+                passwordInput.type = "password";
+                this.textContent = "visibility";
+            }
+        });
+    });
+
+    document.querySelectorAll(".toggle-password2").forEach(function (togglePasswordIcon2) {
+        togglePasswordIcon2.addEventListener("click", function () {
+            const passwordInput = this.parentElement.querySelector(".passadd");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                this.textContent = "visibility_off";
+            } else {
+                passwordInput.type = "password";
+                this.textContent = "visibility";
+            }
+        });
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+{% endblock %}

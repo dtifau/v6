@@ -1,0 +1,496 @@
+:root {
+    --color-primary: #7380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light)
+}
+
+
+
+main .Cinsights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+    margin-top: 2rem;
+}
+
+.Cinsights .community-subprogram-title {
+    display: grid;
+    grid-template-columns: 4rem auto;
+}
+
+
+.Cinsights .community-subprogram-title {
+    position: relative;
+}
+
+
+.Cinsights .community-status {
+    position: absolute;
+    right: -1rem;
+    top: -1rem;
+    font-size: .8rem;
+}
+
+main .Cinsights>div {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 400ms ease;
+    cursor: pointer;
+}
+
+main .Cinsights>div:hover {
+    box-shadow: none;
+    transform: scale(1.02);
+}
+
+main .Cinsights>div span {
+    background: var(--color-primary);
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: var(--color-white);
+    font-size: 2rem;
+
+}
+
+main .Cinsights>div .middle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main .Cinsights h3 {
+    margin: 1rem 0 0.6rem;
+    font-size: 1rem;
+}
+
+main .Cinsights .progress {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+}
+
+main .Cinsights svg {
+    width: 7rem;
+    height: 7rem;
+}
+
+main .Cinsights svg circle {
+    fill: none;
+    stroke-width: 16;
+    stroke-linecap: round;
+    transform: translate(8px, 8px);
+    /*transition: all 500ms ease;*/
+    animation: anim 2s linear forwards;
+
+}
+
+@keyframes anim {
+    0% {
+        stroke-dashoffset: 157.5;
+    }
+}
+
+main .Cinsights .progress .number {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .Cinsights small {
+    margin-top: 1.3rem;
+    display: block;
+}
+
+main .cCommunity {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+    overflow: auto;
+    max-height: 60%;
+}
+
+
+
+/* file upload button */
+.cCommunity input[type="file"]::file-selector-button {
+    border-radius: 4px;
+    padding: 0 16px;
+    height: 40px;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+    transition: background-color 200ms;
+}
+
+/* file upload button hover state */
+.cCommunity input[type="file"]::file-selector-button:hover {
+    background-color: #f3f4f6;
+}
+
+/* file upload button active state */
+.cCommunity input[type="file"]::file-selector-button:active {
+    background-color: #e5e7eb;
+}
+
+
+
+
+main .cCommunity>div {
+
+
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+   
+    transition: all 400ms ease;
+    cursor: pointer;
+}
+
+main .cCommunity .table-card {
+    max-height: 35rem;
+    overflow: auto;
+}
+
+main .cCommunity>div:hover {
+    
+    box-shadow: none;
+}
+
+.cCommunity table {
+
+    width: 100%;
+
+}
+
+main .cCommunity table td {
+    height: 2.8rem;
+    border-bottom: 1px solid lightgray;
+    color: var(--color-dark);
+}
+
+main .cCommunity table tr:last-child td {
+    border: none;
+}
+
+/*------------------ MANAGE ACCOUNT TABLE MODAL ------------------*/
+.cCommunity .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+/* Styling for the modal content */
+.cCommunity .modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 7px;
+    width: 50%;
+    position: relative;
+
+}
+
+.cCommunity .modal h4 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Style for the form container */
+.cCommunity .modal-body {
+    padding: 20px;
+    max-height: 400px;
+    /* Set a maximum height for scrollability */
+    overflow-y: auto;
+    /* Enable vertical scrolling when the content overflows */
+    margin-bottom: 4rem;
+}
+
+/* Style for form labels and inputs */
+.cCommunity .form-group label {
+    font-weight: 100;
+}
+
+.cCommunity .label-category {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+
+.cCommunity .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style for select elements */
+.cCommunity .form-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+/* Style for submit button */
+.cCommunity .btn-submit {
+    background-color: #4a4cd7;
+    color: #fff;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 1rem;
+    right: 1.3rem;
+}
+
+.cCommunity .btn-submit:hover {
+    background-color: #303396;
+}
+
+
+.cCommunity .btn-add {
+    background-color: #4a4cd7;
+    /* Change this to your desired color */
+    color: #fff;
+    /* Change the text color */
+    border: none;
+    border-radius: 7px;
+    position: absolute;
+    left: 36.5rem;
+}
+
+.cCommunity .btn-add:hover {
+    background-color: #303396;
+    cursor: pointer;
+
+}
+
+/* coordinator add */
+
+.cCommunity .btn-add .green-add {
+    background-color: #49a14f;
+    border-radius: 7px;
+}
+
+.cCommunity .btn-add .green-add:hover {
+    background-color: #348138;
+    cursor: pointer;
+
+}
+
+.cCommunity .btn-edit {
+    background-color: #49a14f;
+    /* Set the background color to yellow */
+    color: #fff;
+    /* Change the text color */
+    padding: 5px 10px;
+    /* Add some padding for better appearance */
+    border: none;
+    /* Remove the default button border */
+    text-decoration: none;
+    /* Remove the default link underline */
+    border-radius: 5px;
+}
+
+/* Add a hover effect for the "Edit" button */
+.cCommunity .btn-edit:hover {
+    background-color: #348138;
+    /* Change the background color on hover */
+}
+
+.cCommunity .btn-delete1 {
+    background-color: #ff5555;
+    /* Red background color */
+    color: #fff;
+    /* White text color */
+    padding: 5px 10px;
+    /* Adjust padding as needed */
+    border: none;
+    border-radius: 4px;
+    /* Rounded corners */
+    cursor: pointer;
+    text-decoration: none;
+    /* Remove underlines for links */
+}
+
+
+.cCommunity .btn-delete1:hover {
+    background-color: #ff3333;
+    /* Red background color on hover */
+}
+
+/* Styling for the close button */
+.cCommunity .btn-close {
+    background-color: #ffffff;
+    color: #2a2a2a;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: absolute;
+    right: 1rem;
+    top: .5rem;
+}
+
+.cCommunity .btn-close:hover {
+
+    color: var(--color-danger);
+}
+
+.cCommunity table td {
+    text-align: center;
+}
+
+.cCommunity .file-box {
+    margin-bottom: 1rem;
+    /* Adjust as needed */
+}
+
+
+
+/*smaller laptop*/
+@media screen and (max-width: 1200px) {
+    .cCommunity .cCommunity .modal-content {
+        position: relative;
+    }
+
+    .cCommunity .modal-body {
+        height: 40rem;
+
+    }
+
+    .cCommunity .btn-close {
+        position: absolute;
+        right: 25px;
+        bottom: 2px;
+    }
+}
+
+/* ------------------- MOBILE -------------------- */
+@media screen and (max-width: 400px) {
+    .cCommunity {
+        margin: 0 auto;
+        padding-top: 2rem;
+
+    }
+
+    .cCommunity .btn-add{
+        left: 70%;
+    }
+
+
+    .cCommunity .jumbotron {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .cCommunity .modal-content {
+        width: 90%;
+    }
+
+    .cCommunity .table-card {
+        width: 19rem;
+        overflow: auto;
+    }
+
+    .cCommunity .table-card th {
+        padding-right: 1rem;
+    }
+
+    .cCommunity .btn-close {
+        height: 2rem;
+        right: .5rem;
+    }
+
+    main .Cinsights {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+
+    }
+
+    main .Cinsights>div {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+.Cinsights .Cinsights-div:first-child {
+    display: none;
+}
+
+.show-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.show-more {
+    margin-top: 4rem;
+    position: absolute;
+
+}
+
+.show-less {
+    margin-top: 4rem;
+    position: absolute;
+}
+
+.show-more .showMore1 {
+    cursor: pointer;
+
+}
+
+.show-more .showMore1:hover {
+    color: var(--color-primary);
+}
+
+.show-less .showLess1 {
+    cursor: pointer;
+}
+
+.show-less .showLess1:hover {
+    color: var(--color-primary);
+}

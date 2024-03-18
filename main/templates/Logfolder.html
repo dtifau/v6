@@ -1,0 +1,141 @@
+{% extends "admin_dashboard.html" %}
+{% block title %}Logs Activity{% endblock %}
+{% block content %}
+<div class="margin-top"></div>
+{% with messages = get_flashed_messages(category_filter=['upload_file', 'delete_file'], with_categories=true) %}
+{% if messages %}
+<div>
+    {% for category, message in messages %}
+    <div class="flash flash-{{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+<div class="logs_title">
+    <h1>
+        <span class="material-symbols-sharp folder_managed">
+            manage_search
+        </span>
+        <h3 class="changetxt">Activity Logs</h3>
+    </h1>
+    
+    <form method="POST" action="" class="d-flex search_form" id="search_form">
+        <input type="search" class="form-control search_text" id="search_text" placeholder="Find activiy.." name="search_box">
+    </form>
+</div>
+
+
+<div class="logs-container">
+    <div id="records_count"></div>
+    <div class="table-card">
+    <table class="table table-striped" id="logs_table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Timestamp</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in UserLogs %}
+            <tr>
+                <td class="file-td">{{ log.id }}</td>
+                <td class="file-td">{{ log.userlog }}</td>
+                <td class="file-td">{{ log.timestamp }}</td>
+                <td class="file-td">{{ log.action }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <div id="no_records_found" style="display: none;">No records found.</div>
+    <hr>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+
+        // Store the original content of the table
+        var originalTableContent = $('#logs_table tbody').html();
+
+        // Event handler for form submission
+        $('#search_form').submit(function (event) {
+            event.preventDefault(); // Prevent the form submission
+            var searchText = $('#search_text').val().toLowerCase();
+            filterTable(searchText);
+        });
+
+        // Event handler for input changes in the search bar
+        $('#search_text').on('input', function () {
+            var searchText = $(this).val().toLowerCase();
+            filterTable(searchText);
+        });
+
+        // Event handler for the "x" button in the search bar
+        $('#search_text').on('search', function() {
+            var searchText = $('#search_text').val().toLowerCase();
+            filterTable(searchText);
+        });
+    
+
+    function filterTable(searchText) {
+        var noRecordsFound = true;
+
+        if (searchText) {
+            var matchingCount = 0;
+
+            $('#logs_table tbody tr').each(function () {
+                var row = $(this);
+                var found = false;
+                row.find('td').each(function () {
+                    var cell = $(this);
+                    var cellText = cell.text().toLowerCase();
+                    if (cellText.indexOf(searchText) > -1) {
+                        found = true;
+                        noRecordsFound = false;
+                        cell.html(cellText.replace(new RegExp(searchText, 'gi'), function (match) {
+                            return '<span class="highlight">' + match + '</span>';
+                        }));
+                    } else {
+                        cell.html(cellText);
+                    }
+                });
+
+                if (found) {
+                    matchingCount++;
+                }
+
+                row.toggle(found);
+            });
+
+            $('#records_count').html('Records found: ' + matchingCount);
+        } else {
+                // If search bar is empty, restore original content
+                $('#logs_table tbody').html(originalTableContent);
+                noRecordsFound = false;
+                $('#records_count').empty();
+            }
+
+        // Display or hide the "No records found" message
+        $('#no_records_found').toggle(noRecordsFound);
+    }
+});
+</script>
+
+<style>
+    .highlight {
+        background-color: yellow;
+        /* Adjust the highlight color as needed */
+        font-weight: bold;
+    }
+</style>
+
+{% endblock %}

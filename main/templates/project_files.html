@@ -1,0 +1,58 @@
+{% extends "admin_dashboard.html" %}
+{% block title %}Project files{% endblock %}
+{% block content %}
+<div class="margin-top"></div>
+{% with messages = get_flashed_messages(category_filter=['new_password', 'not_match', 'wrong_old', 'newpassword_space'], with_categories=true) %}
+        {% if messages %}
+            <div>
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+<div class="project_files_title project_files_title-blue">
+    <h1>
+        <span class="material-symbols-sharp folder_managed" >
+            folder_managed
+        </span><h3 class="filetxt">Community Project Files</h3>
+    </h1>
+</div>
+<div class="project_files_container">
+    <div class="literacy">
+        <a class="blue-link" href="{{url_for('dbModel.project_file_list', data='Literacy')}}">Literacy</a>
+    </div>
+    <div class="economic">
+        <a class="blue-link" href="{{url_for('dbModel.project_file_list', data='Socio-economic')}}">Socio-economic</a>
+    </div>
+    <div class="environmental">
+        <a class="blue-link" href="{{url_for('dbModel.project_file_list', data='Environmental Stewardship')}}">Environmental Stewardship</a>
+    </div>
+    <div class="health">
+        <a class="blue-link" href="{{url_for('dbModel.project_file_list', data='Health and Wellness')}}">Health and Wellness</a>
+    </div>
+    <div class="cultural">
+        <a class="blue-link" href="{{url_for('dbModel.project_file_list', data='Cultural Enhancement')}}">Cultural Enhancement</a>
+    </div>
+    <div class="values">
+        <a  class="blue-link" href="{{url_for('dbModel.project_file_list', data='Values Formation')}}">Values Formation</a>
+    </div>
+    <div class="disaster">
+        <a class="blue-link" href="{{url_for('dbModel.project_file_list', data='Disaster Management')}}">Disaster Management</a>
+    </div>
+    <div class="gender">
+        <a class="blue-link" href="{{url_for('dbModel.project_file_list', data='Gender and Development')}}">Gender and Development</a>
+    </div>
+       
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+
+
+{% endblock %}

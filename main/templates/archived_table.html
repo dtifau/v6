@@ -1,0 +1,139 @@
+{% extends "admin_dashboard.html" %}
+{% block title %}Archived Project{% endblock %}
+{% block content %}
+<div class="margin-top"></div>
+{% with messages = get_flashed_messages(category_filter=['delete_pending'], with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="flash flash-{{ category }}">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<div class="archived_table">
+    <div class="jumbotron">
+        <div class="for_filter">
+            <div class="year-filter1 ">
+                <label for="year">Select Year:</label>
+                <select id="year" onchange="filterByYear()">
+                    {% for year in range(current_year, current_year + 5) %}
+                    <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>
+                <button class="show-all-button" onclick="showAllData()">Show All</button>
+            </div>
+        <h2 style="margin-bottom: 1rem;">{{data}} <b>Archived Projects</b></h2>
+        </div>
+        <div class="table-card">
+            <table class="table table-striped" id="logs_table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Community</th>
+                        <th>Program</th>
+                        <th>Sub-Program</th>
+                        <th>Week</th>
+                        <th>Start Date</th>
+                        <th>Total Week</th>
+                        <th>Coordinator</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                {% for row in archived_file_list %}
+                <tbody>
+                    <tr>
+                        <td><a href="{{ url_for('dbModel.view_archived', project_id=row.id)}}" class="btn-edit">{{
+                                row.id
+                                }}</a></td>
+                        <td><a href="{{ url_for('dbModel.view_archived', project_id=row.id)}}" class="btn-edit">{{
+                                row.community }}</a></td>
+                        <td><a href="{{ url_for('dbModel.view_archived', project_id=row.id)}}" class="btn-edit">{{
+                                row.program }}</a></td>
+                        <td><a href="{{ url_for('dbModel.view_archived', project_id=row.id)}}" class="btn-edit">{{
+                                row.subprogram }}</a></td>
+                        <td><a href="{{ url_for('dbModel.view_archived', project_id=row.id)}}" class="btn-edit">{{
+                                row.week
+                                }}</a></td>
+                        <td><a href="{{ url_for('dbModel.view_archived', project_id=row.id)}}" class="btn-edit">
+                                {{ row.start_date }}</a></td>
+
+                        <td><a href="{{ url_for('dbModel.view_archived', project_id=row.id)}}" class="btn-edit">{{
+                                row.totalWeek }}</a></td>
+                        <td><a href="{{ url_for('dbModel.view_archived', project_id=row.id)}}" class="btn-edit">{{
+                                row.user
+                                }}</a></td>
+                        <td>
+                            <a href="{{ url_for('dbModel.view_archived', project_id=row.id)}}"
+                                class="btn-edit status-element" data-status="{{ row.status }}">
+                                {{ row.status }}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ url_for('dbModel.delete_archived', project_id=row.id, data=data)}}"
+                                class="btn-delete1" onclick="return confirm('Are you sure to delete?')">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+            <p id="noRecordsMessage" style="display: none;">No records found.</p>
+        </div> <!--end jumbotron-->
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var statusElements = document.querySelectorAll('.status-element');
+        statusElements.forEach(function (statusElement) {
+            var status = statusElement.getAttribute('data-status');
+            if (status.trim() === 'Ongoing') {
+                statusElement.style.color = 'orange';  // Change the color as needed
+
+            } else {
+                statusElement.style.color = '#00e600';
+            }
+        });
+    });
+</script>
+
+<script>
+    function filterByYear() {
+        var selectedYear = $("#year").val();
+        var recordsFound = false;
+
+        $("#logs_table tbody tr").each(function () {
+            var rowYear = parseInt($(this).find("td:eq(5)").text().split('-')[0]);
+            if (rowYear === parseInt(selectedYear) || selectedYear === "All") {
+                $(this).show();
+                recordsFound = true;
+            } else {
+                $(this).hide();
+            }
+        });
+
+        // Display or hide the "No records found" message
+        if (recordsFound) {
+            $("#noRecordsMessage").hide();
+        } else {
+            $("#noRecordsMessage").show();
+        }
+    }
+
+    function showAllData() {
+        // Show all rows
+        $("#logs_table tbody tr").show();
+
+        // Hide the "No records found" message
+        $("#noRecordsMessage").hide();
+    }
+</script>
+
+{% endblock %}

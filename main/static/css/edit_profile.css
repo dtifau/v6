@@ -1,0 +1,305 @@
+/* -----Root Variable */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/* Root Variable */
+:root {
+    --color-primary: #7380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light)
+}
+
+
+.change_profile_title {
+    background-color: #2f9e36;
+    color: #ffffff;
+    padding: 10px;
+    border-top-left-radius: var(--border-radius-2);
+    /* Top left corner radius */
+    border-top-right-radius: var(--border-radius-2);
+    /* Top right corner radius */
+    display: flex;
+    /* Use flexbox to control alignment */
+    align-items: center;
+    /* Vertically center the content */
+    justify-content: flex-start;
+    /* Align content to the start */
+    height: 6rem;
+    margin-top: 1rem;
+}
+
+.change_profile_title .editprof {
+    padding-left: 0.5rem;
+    font-size: 2.3rem;
+}
+
+
+.change_profile_title-blue {
+    background-color: #303396;
+
+}
+
+.change_profile_title .accountcircle {
+    padding-right: 0.5rem;
+    /* Add some right padding to the lock icon */
+    font-size: 3rem;
+    /* Adjust the icon size as needed */
+    padding-left: 1rem;
+}
+
+.edit_profile_container{
+    background: var(--color-white);
+    padding: var(--card-padding);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    padding-bottom: 4rem;
+    position: relative;
+    padding-bottom: 2rem;
+    border-bottom-left-radius: var(--border-radius-2);
+    /* Top left corner radius */
+    border-bottom-right-radius: var(--border-radius-2);
+    /* Top right corner radius */
+}
+
+.edit_profile_container .form1{
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: -2rem;
+}
+
+.edit_profile_container .form1 div {
+    justify-self: center; /* horizontally center the div */
+    align-self: center; /* vertically center the div */
+
+}
+.edit_profile_container .form1 .left_picture {
+    justify-self: end; /* aligns the first div to the right */
+}
+
+.edit_profile_container .form1 .right_picture {
+    justify-self: start; /* aligns the second div to the left */
+}
+
+.edit_profile_container .form1 .right_picture .change_picture  {
+    border: 1px solid #101010;
+    border-radius: 4px;
+    background-color: #ffffff;
+    width: 9.5rem;
+    height: 2.6rem;
+    font-size: 16px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    cursor: pointer;
+
+  
+}
+
+.edit_profile_container .form1 .right_picture .save_changes  {
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #ffffff;
+    width: 9.8rem;
+    height: 2.6rem;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.edit_profile_container .form1 .right_picture .top_input{
+    margin-bottom: 2rem;
+   
+}
+
+.edit_profile_container .form1 .right_picture .change_picture:hover, .edit_profile_container .form1 .right_picture .save_changes:hover  {
+    background-color: #303396;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.3s ease;
+}
+
+.edit_profile_container .picture_top_container{
+    position: relative;
+    
+}
+
+.edit_profile_container .picture_top_container .form2{
+    position: absolute;
+    top: 0rem;
+    left: 42%;
+}
+
+.edit_profile_container .picture_top_container .delete_profile{
+    padding: 0.3rem 0.3rem 0.1rem 0.3rem    ;
+    background: #ff0000;
+    border-radius: 50%;
+    border: solid 5px white;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    transition: transform 0.3s ease; 
+    
+}
+
+.edit_profile_container .picture_top_container .form2:hover {
+    transform: scale(1.2); /* Scale down to 80% on hover */
+}
+
+
+.edit_profile_container .form1 .left_picture .preview_picture {
+    position: absolute;
+    top: -0.7rem;
+    border-radius: 50%;
+    display: none; 
+    width: 15rem; 
+    height:15rem; 
+    margin-top: 10px;
+    
+}
+
+.edit_profile_container .form3 .form-control{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.edit_profile_container .fullname_box{
+    display: grid;
+
+    grid-template-columns: repeat(2, 2fr);
+    gap: 2rem;
+}
+
+.edit_profile_container .form3{
+
+    padding: 3rem;
+}
+
+.edit_profile_container .btn-submit1{
+    position: absolute;
+    bottom: 2rem;
+    right: 5rem;
+    border: 1px solid #303396;
+    border-radius: 5px;
+    background-color: #1f2287;
+    font-size: 16px;
+    color: white;
+    padding: 0.6rem 1rem 0.6rem 1rem;
+    cursor: pointer;
+}
+
+.edit_profile_container .btn-submit1:hover{
+    background-color: #16184f;
+    transition: 0.3s ease;
+    color: white;
+}
+
+.edit_profile_container  .current_picture{
+    width: 15rem; 
+    height:15rem;
+    border-radius:50%; width: 15rem; height:15rem;
+}
+
+@media screen and (max-width: 386px){
+ 
+    .edit_profile_container .form3{
+
+        padding: 0.3rem !important;
+        padding-bottom: 3rem !important;
+        
+    }
+
+
+    .edit_profile_container .picture_top_container .form2{
+        border: #101010 solid 1px;
+        left: 35% !important;
+    }
+
+    .edit_profile_container .btn-submit1{
+        right: 2.1rem !important;
+    }
+}
+
+@media screen and (max-width: 400px){
+
+    .edit_profile_container{
+        width: 90%;
+        margin: 0 auto;
+        
+    }
+    .edit_profile_container .form3{
+
+        padding: 1rem;
+        padding-bottom: 3rem;
+    }
+
+    .change_profile_title {
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 2rem;
+    }
+    
+    .edit_profile_container  .current_picture{
+        width: 8rem; 
+        height:8rem;
+    }
+
+    .edit_profile_container .form1{
+        display: grid;
+        grid-template-columns: repeat(2, 2fr);
+        gap: 2rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .edit_profile_container .form1 .right_picture .change_picture  {
+        width: 8.3rem;
+        padding: 0.5rem 0.3rem 0.5rem 0.3rem;
+        cursor: pointer;
+    }
+    
+    .edit_profile_container .form1 .right_picture .save_changes  {
+        width: 8.3rem;
+    }
+
+    .edit_profile_container .form1 .left_picture .preview_picture {
+
+        width: 8rem; 
+        height:8rem;
+    }
+
+    .edit_profile_container .picture_top_container .form2{
+        top: 0rem;
+        left:8rem;
+    }
+
+    .edit_profile_container .btn-submit1{
+ 
+        bottom: 2rem;
+        right: 3rem;
+    }
+}
+
+

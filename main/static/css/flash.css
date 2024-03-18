@@ -1,0 +1,67 @@
+/* -----Root Variable */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/* Root Variable */
+:root {
+    --color-primary: #7380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light)
+}
+
+.flash-login {
+   
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 85%;
+    text-align: center;
+    margin: 1rem auto;
+    transition: opacity 1s; /* Adjust the duration if needed */
+}
+
+.flash-login .flash-login_error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    
+}
+
+.flash {
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+.flash-add_community, .flash-edit_account, .flash-add_account, .flash-new_password, .flash-upload_file, .flash-add_pending {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.flash-delete_account, .flash-existing_username, .flash-existing_program, .flash-delete_account, .flash-existing_community, .flash-not_match, .flash-wrong_old, .flash-delete_file, .flash-login_error, .flash-password_space, .flash-newpassword_space, .flash-username_space, .flash-delete_pending .flash-newpassword_space, .flash-not_match{
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}

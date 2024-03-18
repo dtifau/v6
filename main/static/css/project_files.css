@@ -1,0 +1,178 @@
+/* -----Root Variable */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/* Root Variable */
+:root {
+    --color-primary: #7380ec;
+    --color-kaakbay: #2f9e36;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light)
+}
+
+.project_files_title {
+    background-color: #2f9e36;
+    color: #ffffff;
+    padding: 10px;
+    border-top-left-radius: var(--border-radius-2);
+    /* Top left corner radius */
+    border-top-right-radius: var(--border-radius-2);
+    /* Top right corner radius */
+    display: flex;
+    /* Use flexbox to control alignment */
+    align-items: center;
+    /* Vertically center the content */
+    justify-content: flex-start;
+    /* Align content to the start */
+    height: 6rem;
+    margin-top: 1rem;
+}
+
+.project_files_title-blue {
+    background-color: #303396;
+}
+
+
+.project_files_title .folder_managed {
+    padding-right: 0.5rem;
+    /* Add some right padding to the lock icon */
+    font-size: 2.3rem;
+    /* Adjust the icon size as needed */
+    padding-left: 1rem;
+}
+
+.project_files_title .filetxt {
+    padding-left: 0.5rem;
+    font-size: 2.3rem;
+}
+
+.project_files_container {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    padding-bottom: 4rem;
+    position: relative;
+    border-bottom-left-radius: var(--border-radius-2);
+    /* Top left corner radius */
+    border-bottom-right-radius: var(--border-radius-2);
+    /* Top right corner radius */
+    
+}
+
+.project_files_container>div {
+    margin-top: 2rem;
+    margin-left: 1rem;
+}
+
+.project_files_container a {
+    color: var(--color-kaakbay);
+    font-weight: 700;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.project_files_container .blue-link {
+    color: #303396;
+}
+
+.project_files_container a:hover {
+    text-decoration: none;
+    background-color: rgba(47, 158, 54, 1);
+    color: white;
+
+}
+
+.project_files_container .blue-link:hover {
+    text-decoration: none;
+    background-color: #303396;
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 4px;
+}
+
+.project_files_container .literacy {
+    margin-top: 1rem !important;
+}
+
+
+/* Year Filter */
+.projectFilesCard .jumbotron {
+    position: relative;
+
+}
+
+/* YEAR FILTER */
+.projectFilesCard .jumbotron .year-filter {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 20px;
+    margin-right: 10rem;
+}
+
+.projectFilesCard .jumbotron .year-filter label {
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: large;
+}
+
+.projectFilesCard .jumbotron .year-filter select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.projectFilesCard .jumbotron .year-filter select:hover {
+    border-color: #555;
+    /* Change border color on hover */
+}
+
+/* Show all btn */
+.projectFilesCard .jumbotron .year-filter .show-all-button {
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.projectFilesCard .jumbotron .year-filter .show-all-button:hover {
+    border-color: #555;
+}
+
+@media screen and (max-width: 400px) {
+    .project_files_title {
+        margin: 0 auto;
+        padding-top: 1rem;
+        width: 90%;
+    }
+
+    .project_files_container {
+        margin: 0 auto;
+        padding-top: 1rem;
+        width: 90%;
+    }
+}

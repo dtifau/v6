@@ -1,0 +1,144 @@
+{% extends "admin_dashboard.html" %}
+{% block title %}Pending Details{% endblock %}
+{% block content %}
+<div class="margin-top"></div>
+    {% with messages = get_flashed_messages(category_filter=['delete_account', 'add_community', 'existing_community'], with_categories=true) %}
+        {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+<div class="pending_detailsCard">
+    <div class="pending_detailsBox">
+        <h2 style="margin-bottom: 1rem;">Pending <b>Project Details</b></h2> 
+        <form action="{{ url_for('dbModel.approve')}}" method="POST" enctype="multipart/form-data" id="upload-form">
+            <!-- PPA -->
+            <label class="PPA label-category">PPA (Program, Project, Activity)</label>
+            <div class="form-group">
+                <label>Community:</label>
+                <input type="text" class="form-control" name="community" value="{{community}}" readonly>
+            </div>
+            <div class="form-group">
+                <label>Program:</label>
+                <input type="text" class="form-control" name="program" value="{{program}}" readonly>
+            </div>
+            <div class="form-group">
+                <label>Sub-program:</label>
+                <input type="text" class="form-control" name="subprogram" value="{{subprogram}}" readonly >
+            </div>
+            <br>
+            <!-- TIMEFRAME -->
+            <label class="timeframe label-category">TIMEFRAME</label>
+            <div class="time-frame">
+                <div class="form-group">
+                    <label>Start date:</label>
+                    <input type="text" class="form-control" name="start_date" id="start_date_input"  value="{{start_date}}" readonly >
+                </div>
+                <div class="form-group">
+                    <label>End date:</label>
+                    <input type="text" class="form-control" name="end_date" id="end_date_input" value="{{end_date}}" readonly >
+                </div>  
+                <div class="form-group">
+                    <label>Total Week:</label>
+                    <input type="number" class="form-control" name="totalWeek" value="{{totalWeek}}" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Budget:</label>
+                <input type="number" class="form-control" name="budget" value="{{budget}}" readonly>
+            </div>
+            <br>
+            <!-- ACCOUNTABILITY -->
+            <label class="accountability label-category">ACCOUNTABILITY</label><br>
+            <div class="form-group">
+                <label>Coordinator:</label>
+                <input type="text" class="form-control" name="user" value="{{user}}" readonly>
+            </div>
+            <div class="form-group">
+                <label>LEAD:</label>
+                <input type="text" class="form-control" name="lead" value="{{department}}" readonly >
+            </div>
+            <div class="form-group">
+                <label>SUPPORT:</label>
+                <input type="text" class="form-control" name="support" value="{{subDepartment}}" readonly >
+            </div>
+            <br>
+
+            <!-- FILE -->
+            <label class="file label-category">CESU FILE</label><br>
+            <div class="fileces">
+        
+            <div class="form-group file-box" id="tooltip">
+                <p for="CPF">Community Profiling Form</p>
+                <span id="tooltipText">download</span>
+                {% if cpf_filename %}
+                <a href="{{ url_for('dbModel.view_cpf', program=program, subprogram=subprogram, community=community, cpf_filename = cpf_filename) }}">{{ cpf_filename }}</a>
+                {% else %}
+                    <p>No CPF file available.</p>
+                {% endif %}
+            </div>
+
+            <div class="form-group file-box" id="tooltip2">
+                <p for="CESAP">CES Activity Proposal</p>
+                <span id="tooltipText2">download</span>
+                {% if cesap_filename %}
+                <a href="{{ url_for('dbModel.view_cesap', program=program, subprogram=subprogram, community=community, cesap_filename = cesap_filename) }}">{{ cesap_filename }}</a>
+                {% else %}
+                    <p>No CESAP file available.</p>
+                {% endif %}
+                
+            </div>
+
+            <div class="form-group file-box" id="tooltip3">
+                <p for="CNA">Community Needs Assessment</p>
+                <span id="tooltipText3">download</span>
+                {% if cna_filename %}
+                <a href="{{ url_for('dbModel.view_cna', program=program, subprogram=subprogram, community=community, cna_filename=cna_filename) }}">{{ cna_filename }}</a>
+                    <!-- Your other code related to cna_filename -->
+                {% else %}
+                    <p>No CNA file available.</p>
+                {% endif %}
+            </div>
+            </div>
+            <div class="form-group">
+                <button class="btn-submit" type="submit" value="Upload">Accept</button>
+            </div>
+
+           
+        </form>
+
+        <form action="{{ url_for('dbModel.decline', community=community, program=program, subprogram=subprogram) }}" method="POST" enctype="multipart/form-data" id="upload-form">
+            <div class="form-group">
+                <label>Comments:</label>
+                <input type="text" class="form-control" name="comments" required>
+                <!--value="{{comments}}"-->
+            </div>
+            <button class="btn-decline" type="submit">Decline</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+<script>
+    flatpickr("#start_date_input", {
+    dateFormat: "Y-m-d",
+    altInput: true,
+    altFormat: "F j, Y"
+});
+
+flatpickr("#end_date_input", {
+            dateFormat: "Y-m-d",
+            altInput: true,
+            altFormat: "F j, Y"
+        });
+</script>
+
+{% endblock %}

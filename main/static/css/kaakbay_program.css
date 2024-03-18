@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --color-primary: #7380ec;
+    --color-admin: #303396;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+    --color-kaakbay: #2f9e36;
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light)
+}
+
+main .kaakbay_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+    margin-top: 1rem;
+    font-family: poppins, sans-serif;
+}
+
+main .kaakbay_container>a {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--border-radius-3);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 400ms ease;
+    height: 12.7rem;
+    cursor: pointer;
+}
+
+main .kaakbay_container>a:hover {
+    box-shadow: none;
+    transform: scale(1.02);
+}
+
+.kaakbay_container .kaakbay_title {
+    width: 100%;
+    height: 4rem;
+    background-color: var(--color-admin);
+    border-top-left-radius: var(--border-radius-1);
+    /* Top left corner radius */
+    border-top-right-radius: var(--border-radius-1);
+    /* Top right corner radius */
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+
+.kaakbay_container .kaakbay_title h1 {
+    color: white;
+    font-size: 1.3rem;
+    margin-left: 2rem;
+}
+
+
+.kaakbay_container .kaakbay_card {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.kaakbay_container .kaakbay_content {
+    margin: 1rem;
+}
+
+.kaakbay_container .text-muted {
+    color: var(--color-info-dark)
+}
+
+main .kaakbay_container .status {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+    font-family: poppins, sans-serif;
+
+}
+
+main .kaakbay_container .status h2 {
+    text-align: center;
+    font-size: 12px;
+
+}
+
+main .kaakbay_container .statusNumber {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+    font-family: poppins, sans-serif;
+
+}
+
+main .kaakbay_container .statusNumber h2 {
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 500
+}
+
+main .kaakbay_container .status span {
+    font-size: 3rem;
+}
+
+main .kaakbay_card .status .green {
+    color: #0dc286;
+}
+
+
+main .kaakbay_card .status .orange {
+    color: rgb(220, 140, 55);
+}
+
+@media screen and (max-width: 400px) {
+    main .kaakbay_container {
+        grid-template-columns: 1fr;
+        padding-top: 3rem;
+        width: 90%;
+        margin: 2rem auto;
+    }
+
+    main .kaakbay_container>a {
+        height: 15rem;
+    }
+
+    main .kaakbay_container .kaakbay_title {
+        width: 100%;
+        height: 3.5rem;
+    }
+
+    main .kaakbay_container .kaakbay_title h1 {
+        font-size: 1.5rem;
+        margin-left: 1rem;
+    }
+
+    main .kaakbay_container .status h2 {
+        margin-top: 1rem;
+        text-align: center;
+
+    }
+
+
+
+
+}

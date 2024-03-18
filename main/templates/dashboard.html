@@ -1,0 +1,83 @@
+{% extends "admin_dashboard.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="margin-top"></div>
+<div class="dashboard-bg">
+    <img class="" src="/static/images/CES.png">
+</div>
+
+<div class="dashboard-container">
+    <a class="dashboard-card" href="{{ url_for('dbModel.manage_community') }}">
+        <div class="dashboard-title dashboard-title-blue">
+            <h1>Community</h1>
+            <span class="material-symbols-sharp dashboard-icon">groups</span>
+            <span class="dashboard-bubble1"></span>
+            <span class="dashboard-bubble2"></span>
+
+        </div>
+        <div class="dashboard-description">
+            <p class="text-muted">Manage community projects.</p>
+        </div>
+    </a>
+
+    <a class="dashboard-card" href="{{ url_for('dbModel.kaakbay_program') }}">
+        <div class="dashboard-title dashboard-title-blue">
+            <h1>Extension/Out Reach Programs</h1>
+            <span class="material-symbols-sharp dashboard-icon">groups</span>
+            <span class="dashboard-box1"></span>
+        </div>
+        <div class="dashboard-description">
+            <p class="text-muted">Track community projects linked to the 8 programs—view projects' progress.</p>
+        </div>
+    </a>
+
+    <a class="dashboard-card" href="{{ url_for('dbModel.manage_pending') }}">
+        <div class="dashboard-title dashboard-title-blue">
+            <h1>Pending Projects</h1>
+            <span class="material-symbols-sharp dashboard-icon">pending</span>
+            <span class="dashboard-bubble1"></span>
+            <span class="dashboard-bubble2"></span>
+        </div>
+        <div class="dashboard-description">
+            <p class="text-muted">See pending community projects under the 8 programs.</p>
+        </div>
+    </a>
+
+    <a class="dashboard-card" href="{{ url_for('dbModel.manage_account') }}">
+        <div class="dashboard-title dashboard-title-blue">
+            <h1>Users Account</h1>
+            <span class="material-symbols-sharp dashboard-icon">manage_accounts</span>
+            <span class="dashboard-box1"></span>
+        </div>
+        <div class="dashboard-description">
+            <p class="text-muted">Manage users account.</p>
+        </div>
+    </a>
+
+    <a class="dashboard-card" href="{{ url_for('randomForest.program') }}">
+        <div class="dashboard-title dashboard-title-blue">
+            <h1>Program Recommendation</h1>
+            <span class="material-symbols-sharp dashboard-icon">neurology</span>
+            <span class="dashboard-bubble1"></span>
+            <span class="dashboard-bubble2"></span>
+        </div>
+        <div class="dashboard-description">
+            <p class="text-muted">Decision Support System: Suggest top 3 programs based from Community Needs Assessment.
+            </p>
+        </div>
+    </a>
+
+    <a class="dashboard-card" href="{{ url_for('file.files') }}">
+        <div class="dashboard-title dashboard-title-blue">
+            <h1>CESU Files</h1>
+            <span class="material-symbols-sharp dashboard-icon">folder</span>
+            <span class="dashboard-box1"></span>
+        </div>
+        <div class="dashboard-description">
+            <p class="text-muted">View and download CESU files.</p>
+        </div>
+    </a>
+
+</div>
+{% endblock %}

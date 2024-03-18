@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Community Data</title>
+</head>
+<body>
+    <h1>Community Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Community</th>
+                <th>Program</th>
+                <th>Subprogram</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Week</th>
+                <th>Total Week</th>
+                <th>User</th>
+                <th>Department</th>
+                <th>SubDepartment</th>
+                <th>Status</th>
+                <th>Budget</th>
+                <th>CPF</th>
+                <th>CESAP</th>
+                <th>CNA</th>
+                <th>Department_A</th>
+                <th>Volunteer</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for community in community_data %}
+            <tr>
+                <td>{{ community.id }}</td>
+                <td>{{ community.community }}</td>
+                <td>{{ community.program }}</td>
+                <td>{{ community.subprogram }}</td>
+                <td>{{ community.start_date }}</td>
+                <td>{{ community.end_date }}</td>
+                <td>{{ community.week }}</td>
+                <td>{{ community.totalWeek }}</td>
+                <td>{{ community.user }}</td>
+                <td>{{ community.department }}</td>
+                <td>{{ community.subDepartment }}</td>
+                <td>{{ community.status }}</td>
+                <td>{{ community.budget }}</td>
+                <td>{{ community.cpf_filename }}</td>
+                <td>{{ community.cesap_filename }}</td>
+                <td>{{ community.cna_filename }}</td>
+                <td>{{ community.department_A }}</td>
+                <td>{{ community.volunteer }}</td>
+          
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+<!--PLAN-->
+<h1>Planner Data</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Community</th>
+            <th>Program</th>
+            <th>Subprogram</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Week</th>
+            <th>Total Week</th>
+            <th>User</th>
+            <th>Department</th>
+            <th>SubDepartment</th>
+            <th>Status</th>
+            <th>Budget</th>
+            <th>CPF</th>
+            <th>CESAP</th>
+            <th>CNA</th>
+            <th>Department_A</th>
+            <th>Volunteer</th>
+
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for planner1 in planner %}
+        <tr>
+            <td>{{ planner1.id }}</td>
+            <td>{{ planner1.community }}</td>
+            <td>{{ planner1.program }}</td>
+            <td>{{ planner1.subprogram }}</td>
+            <td>{{ planner1.start_date }}</td>
+            <td>{{ planner1.end_date }}</td>
+            <td>{{ planner1.week }}</td>
+            <td>{{ planner1.totalWeek }}</td>
+            <td>{{ planner1.user }}</td>
+            <td>{{ planner1.department }}</td>
+            <td>{{ planner1.subDepartment }}</td>
+            <td>{{ planner1.status }}</td>
+            <td>{{ planner1.budget }}</td>
+            <td>{{ planner1.cpf_filename }}</td>
+            <td>{{ planner1.cesap_filename }}</td>
+            <td>{{ planner1.cna_filename }}</td>
+            <td>{{ planner1.department_A }}</td>
+            <td>{{ planner1.volunteer }}</td>
+      
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+    <!--ARCHIVE-->
+
+    <h1>ARCHIVE Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Community</th>
+                <th>Program</th>
+                <th>Subprogram</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Week</th>
+                <th>Total Week</th>
+                <th>User</th>
+                <th>Department</th>
+                <th>SubDepartment</th>
+                <th>Status</th>
+                <th>Budget</th>
+                <th>CPF</th>
+                <th>CESAP</th>
+                <th>CNA</th>
+                <th>Department_A</th>
+                <th>Volunteer</th>
+    
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for community in archive_project %}
+            <tr>
+                <td>{{ community.id }}</td>
+                <td>{{ community.community }}</td>
+                <td>{{ community.program }}</td>
+                <td>{{ community.subprogram }}</td>
+                <td>{{ community.start_date }}</td>
+                <td>{{ community.end_date }}</td>
+                <td>{{ community.week }}</td>
+                <td>{{ community.totalWeek }}</td>
+                <td>{{ community.user }}</td>
+                <td>{{ community.department }}</td>
+                <td>{{ community.subDepartment }}</td>
+                <td>{{ community.status }}</td>
+                <td>{{ community.budget }}</td>
+                <td>{{ community.cpf_filename }}</td>
+                <td>{{ community.cesap_filename }}</td>
+                <td>{{ community.cna_filename }}</td>
+                <td>{{ community.department_A }}</td>
+                <td>{{ community.volunteer }}</td>
+                <td>{{ community.url }}</td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <!--Subprogram-->
+    <table >
+        <h1>Subprogram</h1>
+        <thead>
+            <tr>
+               
+                <th>Program</th>
+                <th>Subprogram</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for file3 in subprogram_data %}
+            <tr>
+                <td class="file-td">{{ file3.program }}</td>
+                <td class="file-td">{{ file3.subprogram }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+   
+    <h1>Pending_project_data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Community</th>
+                <th>Program</th>
+                <th>Subprogram</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Week</th>
+                <th>Total Week</th>
+                <th>User</th>
+                <th>Department</th>
+                <th>SubDepartment</th>
+                <th>Status</th>
+                <th>Budget</th>
+                <th>CPF</th>
+                <th>CESAP</th>
+                <th>CNA</th>
+                <th>comments</th>
+                <th>Department_A</th>
+                <th>Volunteer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for community in Pending_project_data %}
+            <tr>
+                <td>{{ community.id }}</td>
+                <td>{{ community.community }}</td>
+                <td>{{ community.program }}</td>
+                <td>{{ community.subprogram }}</td>
+                <td>{{ community.start_date }}</td>
+                <td>{{ community.end_date }}</td>
+                <td>{{ community.week }}</td>
+                <td>{{ community.totalWeek }}</td>
+                <td>{{ community.user }}</td>
+                <td>{{ community.department }}</td>
+                <td>{{ community.subDepartment }}</td>
+                <td>{{ community.status }}</td>
+                <td>{{ community.budget }}</td>
+                <td>{{ community.cpf_filename }}</td>
+                <td>{{ community.cesap_filename }}</td>
+                <td>{{ community.cna_filename }}</td>
+                <td>{{ community.comments }}</td>
+                <td>{{ community.department_A }}</td>
+                <td>{{ community.volunteer }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+<table>
+    <h1>Users</h1>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>username</th>
+            <th>firstname</th>
+            <th>lastname</th>
+            <th>email</th>
+            <th>password</th>
+            <th>otp</th>
+            <th>otp_timestamp</th>
+            <th>program</th>
+            <th>role</th>
+            <th>department</th>
+            <th>Mobile Number</th>
+            
+           
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for file11 in Users %}
+        <tr>
+            <td class="file-td">{{ file11.id }}</td>
+            <td class="file-td">{{ file11.username }}</td>
+            <td class="file-td">{{ file11.firstname }}</td>
+            <td class="file-td">{{ file11.lastname }}</td>
+            <td class="file-td">{{ file11.email }}</td>
+            <td class="file-td">{{ file11.password }}</td>
+            <td class="file-td">{{ file11.otp }}</td>
+            <td class="file-td">{{ file11.otp_timestamp }}</td>
+            <td class="file-td">{{ file11.program }}</td>
+            <td class="file-td">{{ file11.role }}</td>
+            
+            <td class="file-td">{{ file11.department_A }}</td>
+            <td class="file-td">{{ file11.mobile_number }}</td>
+            
+           
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br>
+<br>
+
+
+
+<table>
+    <h1>Department</h1>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Department Abbreviation</th>
+            <th>Department Full</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for log in department %}
+        <tr>
+            <td class="file-td">{{ log.id }}</td>
+            <td class="file-td">{{ log.department_A }}</td>
+            <td class="file-td">{{ log.department_F }}</td>
+           
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<table>
+    <h1>Logs</h1>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Timestamp</th>
+            <th>Action</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for log in UserLogs %}
+        <tr>
+            <td class="file-td">{{ log.id }}</td>
+            <td class="file-td">{{ log.userlog }}</td>
+            <td class="file-td">{{ log.timestamp }}</td>
+            <td class="file-td">{{ log.action }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+
+
+</body>
+</html>

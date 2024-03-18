@@ -1,0 +1,176 @@
+{% extends "coordinator_dashboard.html" %}
+{% block title %}Project Details{% endblock %}
+{% block content %}
+
+<style type="text/css">
+    #tooltip,
+    #tooltip2,
+    #tooltip3 {
+        position: relative;
+        cursor: pointer;
+        font-family: sans-serif;
+    }
+
+    #tooltipText,
+    #tooltipText2,
+    #tooltipText3 {
+        position: absolute;
+        right: 8rem;
+        background-color: rgb(15, 81, 32);
+        color: #fff;
+        white-space: nowrap;
+        padding: 7px 10px;
+        border-radius: 7px;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    #tooltipText::before,
+    #tooltipText2::before,
+    #tooltipText3::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        transform: translateX(-50%);
+        border: 10px solid;
+        border-color: rgb(15, 81, 32) #0000 #0000 #0000;
+    }
+
+    #tooltip:hover #tooltipText,
+    #tooltip2:hover #tooltipText2,
+    #tooltip3:hover #tooltipText3 {
+        top: -1rem;
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
+<div class="margin-top"></div>
+{% with messages = get_flashed_messages(category_filter=['delete_account', 'add_community', 'existing_community'],
+with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="flash flash-{{ category }}">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<div class="Cproject_detailsCard">
+    <div class="project_detailsBox">
+        <h2 style="margin-bottom: 1rem;">Community <b>Projects Details</b></h2>
+        <form action="#" method="POST" enctype="multipart/form-data" id="upload-form">
+            <!-- PPA -->
+            <label class="PPA label-category">PPA (Program, Project, Activity)</label>
+            <div class="form-group">
+                <label>Community:</label>
+                <input type="text" class="form-control" name="community" value="{{community}}" readonly>
+            </div>
+            <div class="form-group">
+                <label>Program:</label>
+                <input type="text" class="form-control" name="program" value="{{program}}" readonly>
+            </div>
+            <div class="form-group">
+                <label>Sub-program:</label>
+                <input type="text" class="form-control" name="subprogram" value="{{subprogram}}" readonly>
+            </div>
+            <br>
+            <!-- TIMEFRAME -->
+            <label class="timeframe label-category">TIMEFRAME</label>
+            <div class="time-frame">
+                <div class="form-group">
+                    <label>Start date:</label>
+                    <input type="text" class="form-control" name="start_date" id="start_date_input"
+                        value="{{start_date}}" readonly>
+                </div>
+                <div class="form-group">
+                    <label>End date:</label>
+                    <input type="text" class="form-control" name="end_date" id="end_date_input" value="{{end_date}}"
+                        readonly>
+                </div>
+                <div class="form-group">
+                    <label>Total Week:</label>
+                    <input type="number" class="form-control" name="totalWeek" value="{{totalWeek}}" readonly>
+                </div>
+            </div>
+
+            <!-- ACCOUNTABILITY -->
+            <label class="accountability label-category">ACCOUNTABILITY</label><br>
+            <div class="form-group">
+                <label>Coordinator:</label>
+                <input type="text" class="form-control" name="user" value="{{user}}" readonly>
+            </div>
+            <div class="form-group">
+                <label>Department:</label>
+                <input type="text" class="form-control" name="department_A" value="{{department_A}}" readonly>
+            </div>
+            <div class="form-group">
+                <label>LEAD:</label>
+                <input type="text" class="form-control" name="lead" value="{{department}}" readonly>
+            </div>
+            <div class="form-group">
+                <label>SUPPORT:</label>
+                <input type="text" class="form-control" name="support" value="{{subDepartment}}" readonly>
+            </div>
+            <div class="form-group">
+                <label>Volunteer(s):</label>
+                <input type="number" class="form-control" name="volunteer" value="{{volunteer}}" readonly>
+            </div>
+            <br>
+
+            <!-- FILE -->
+            <label class="file label-category">CESU FILE</label><br>
+            <div class="fileces">
+
+                <div class="form-group file-box" id="tooltip">
+                    <p for="CPF">Community Profiling Form</p>
+                    <span id="tooltipText">download</span>
+                    <a
+                        href="{{ url_for('coordinator.cView_cpf_project', program=program, subprogram=subprogram, community=community, cpf_filename=cpf_filename) }}">{{
+                        cpf_filename }}</a>
+                </div>
+
+                <div class="form-group file-box" id="tooltip2">
+                    <p for="CESAP">CES Activity Proposal</p>
+                    <span id="tooltipText2">download</span>
+                    <a
+                        href="{{ url_for('coordinator.cView_cesap_project', program=program, subprogram=subprogram, community=community, cesap_filename=cesap_filename) }}">{{
+                        cesap_filename }}</a>
+                </div>
+
+                <div class="form-group file-box" id="tooltip3">
+                    <p for="CNA">Community Needs Assessment</p>
+                    <span id="tooltipText3">download</span>
+                    <a
+                        href="{{ url_for('coordinator.cView_cna_project', program=program, subprogram=subprogram, community=community, cna_filename=cna_filename) }}">{{
+                        cna_filename }}</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+
+<script>
+    flatpickr("#start_date_input", {
+        dateFormat: "Y-m-d",
+        altInput: true,
+        altFormat: "F j, Y"
+    });
+
+    flatpickr("#end_date_input", {
+        dateFormat: "Y-m-d",
+        altInput: true,
+        altFormat: "F j, Y"
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,649 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Root Variable */
+:root {
+    --color-primary: #7380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light)
+}
+
+
+main .manageUser {
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+    
+}
+
+main .manageUser>div {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+
+main .manageUser>div:hover {
+    box-shadow: none;
+}
+
+main .manageUser table {
+    width: 100%;
+
+}
+
+main .manageUser table td {
+    height: 2.8rem;
+    border-bottom: 1px solid lightgray;
+    color: var(--color-dark);
+}
+
+main .manageUser table tr:last-child td {
+    border: none;
+}
+
+.truncate-text {
+    max-width: 10ch;
+    /* set maximum width to 10 characters */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/*------------------ MANAGE ACCOUNT TABLE MODAL ------------------*/
+.manageUser .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+/* Styling for the modal content */
+.manageUser .modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 7px;
+    width: 50%;
+    position: relative;
+}
+
+.manageUser .modal h4 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Style for the form container */
+.manageUser .modal-body {
+    padding: 20px;
+    max-height: 400px;
+    /* Set a maximum height for scrollability */
+    overflow-y: auto;
+    /* Enable vertical scrolling when the content overflows */
+    margin-bottom: 5rem;
+}
+
+/* Style for form labels and inputs */
+.manageUser .form-group label {
+    font-weight: bold;
+}
+
+.manageUser .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style for select elements */
+.manageUser .form-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style for submit button */
+.manageUser .btn-submit {
+    background-color: #4a4cd7;
+    color: #fff;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.manageUser .btn-submit:hover {
+    background-color: #303396;
+}
+
+
+.manageUser .btn-add {
+    background-color: #4a4cd7;
+    /* Change this to your desired color */
+    color: #fff;
+    /* Change the text color */
+    border: none;
+    border-radius: 7px;
+    position: absolute;
+    top:2rem;
+    left: 16rem;
+
+}
+
+.manageUser .btn-add:hover {
+    background-color: #303396;
+    cursor: pointer;
+}
+
+.manageUser .btn-edit {
+    background-color: #49a14f;
+    color: #fff;
+    padding: 5px 7px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.manageUser .btn-edit:hover {
+    background-color: #348138;
+}
+
+.manageUser .btn-delete1 {
+    background-color: #ff5555;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.manageUser .btn-delete1:hover {
+    background-color: #ff3333;
+}
+
+/* Styling for the close button */
+.manageUser .btn-close {
+    background-color: #ffffff;
+    color: #2a2a2a;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: absolute;
+    right: 1rem;
+    top: .5rem;
+}
+
+.manageUser .btn-close:hover {
+    color: var(--color-danger);
+}
+
+.manageUser .btn-submit {
+    background-color: #49a14f;
+    color: #fff;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 1.3rem;
+    right: 1.3rem;
+
+}
+
+.manageUser .btn-submit:hover {
+    background-color: #05ae11;
+
+}
+
+.manageUser table td {
+    text-align: center;
+}
+
+.manageUser .pass-toggle-container {
+    position: relative;
+}
+
+.manageUser #toggle-edit-password {
+    position: absolute;
+    right: 1rem;
+    top: 1.9rem;
+    cursor: pointer;
+}
+
+
+.manageUser .jumbo{
+    overflow: auto;
+    max-height: 20rem;
+}
+
+.manageUser .jumbotron{
+   position: relative;
+   
+}
+
+.manageUser .toggle_password_eye{
+    position: relative;
+}
+
+.manageUser .toggle_password_eye .toggle-password2{
+    position: absolute;
+    top:0.5rem;
+    right: 1rem;
+}
+
+/*FOR DEPARTMENT TABLE*/
+
+
+main .manageDepartment {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 50%;
+    gap: 1.6rem;
+    max-height: 300px;
+    margin-top: 2rem;
+    
+}
+
+main .manageDepartment>div {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    position: relative;
+}
+
+main .manageDepartment>div:hover {
+    box-shadow: none;
+}
+
+main .manageDepartment table {
+    width: 100%;
+
+}
+
+main .manageDepartment table td {
+    height: 2.8rem;
+    border-bottom: 1px solid lightgray;
+    color: var(--color-dark);
+}
+
+main .manageDepartment table tr:last-child td {
+    border: none;
+}
+
+main .manageDepartment .jumbotron{
+    width: 100%;
+    max-width: 40rem;
+    
+}
+
+main .manageDepartment table td {
+    text-align: center;
+}
+
+
+
+/*------------------ MANAGE DEPARTMENT TABLE MODAL ------------------*/
+.manageDepartment .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+/* Styling for the modal content */
+.manageDepartment .modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 7px;
+    width: 50%;
+    position: relative;
+}
+
+.manageDepartment .modal h4 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Style for the form container */
+.manageDepartment .modal-body {
+    padding: 20px;
+    max-height: 400px;
+    /* Set a maximum height for scrollability */
+    overflow-y: auto;
+    /* Enable vertical scrolling when the content overflows */
+    margin-bottom: 5rem;
+}
+
+/* Style for form labels and inputs */
+.manageDepartment .form-group label {
+    font-weight: bold;
+}
+
+.manageDepartment .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style for select elements */
+.manageDepartment .form-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style for submit button */
+.manageDepartment .btn-submit {
+    background-color: #4a4cd7;
+    color: #fff;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.manageDepartment .btn-submit:hover {
+    background-color: #303396;
+}
+
+
+.manageDepartment .btn-add {
+    background-color: #4a4cd7;
+    /* Change this to your desired color */
+    color: #fff;
+    /* Change the text color */
+    border: none;
+    border-radius: 7px;
+    position: absolute;
+    left: 17.5rem;
+    top:2rem
+   
+
+}
+
+.manageDepartment .btn-add:hover {
+    background-color: #303396;
+    cursor: pointer;
+}
+
+.manageDepartment .btn-edit {
+    background-color: #49a14f;
+    /* Set the background color to yellow */
+    color: #fff;
+    /* Change the text color */
+    padding: 5px 10px;
+    /* Add some padding for better appearance */
+    border: none;
+    /* Remove the default button border */
+    border-radius: 5px;
+}
+
+/* Add a hover effect for the "Edit" button */
+.manageDepartment .btn-edit:hover {
+    background-color: #348138;
+    /* Change the background color on hover */
+}
+
+.manageDepartment .btn-delete1 {
+    background-color: #ff5555;
+    /* Red background color */
+    color: #fff;
+    /* White text color */
+    padding: 5px 10px;
+    /* Adjust padding as needed */
+    border: none;
+    border-radius: 4px;
+    /* Rounded corners */
+    cursor: pointer;
+}
+
+.manageDepartment .btn-delete1:hover {
+    background-color: #ff3333;
+    /* Red background color on hover */
+}
+
+/* Styling for the close button */
+.manageDepartment .btn-close {
+    background-color: #ffffff;
+    color: #2a2a2a;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: absolute;
+    right: 1rem;
+    top: .5rem;
+}
+
+.manageDepartment .btn-close:hover {
+    color: var(--color-danger);
+}
+
+.manageDepartment .btn-submit {
+    background-color: #49a14f;
+    color: #fff;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 1.3rem;
+    right: 1.3rem;
+
+}
+
+.manageDepartment .btn-submit:hover {
+    background-color: #05ae11;
+
+}
+
+.manageDepartment table td {
+    text-align: left;
+}
+
+.manageDepartment .pass-toggle-container {
+    position: relative;
+}
+
+.manageDepartment #toggle-edit-password {
+    position: absolute;
+    right: 1rem;
+    top: 1.9rem;
+    cursor: pointer;
+}
+
+.manageDepartment .delete_update_box{
+    position: relative;
+    width: 1;
+    padding: 1.2rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.6rem;
+    margin-left: 0.2rem;
+}
+
+.manageDepartment .update_department_btn{
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    right: 1rem;
+    color: rgb(246, 246, 246);
+}
+
+.manageDepartment .delete_department_btn  {
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    right: 1rem;
+    color: rgb(246, 246, 246);
+}
+
+.manageDepartment .jumbo{
+    overflow: auto;
+    max-height: 11rem;
+}
+
+
+
+/*FOR DEPARTMENT TABLE -- END*/
+
+@media screen and (max-width: 400px) {
+
+    .manageUser {
+        margin: 0 auto;
+        padding-top: 1rem;
+        width: 90%;
+    }
+
+
+
+    .manageUser .modal-content {
+        width: 90%;
+    }
+
+    .manageUser .jumbo {
+        overflow: auto;
+        width: 20rem;
+        max-height: 30rem;
+    }
+
+    main .manageUser table th:last-child{
+        padding: 0 3rem 0 3rem; 
+    }
+
+ 
+    main .manageUser table td {
+        height: 3rem;
+        border-bottom: 1px solid lightgray;
+        color: var(--color-dark);
+        width: 100%;
+    }
+
+    main .manageUser table th {
+        padding-right: 1rem;
+    }
+
+    .manageUser .btn-delete1 {
+       padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+ 
+    }
+
+    .manageUser .btn-edit {
+        padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+
+    }
+
+    .manageUser .btn-add {
+      
+        position: absolute;
+        left: 16rem;
+        top: 1.9rem;
+    
+    }
+
+    .manageUser .jumbo{
+        max-height: 18rem;
+    }
+
+    
+
+    
+main .manageDepartment {
+   
+    width:90%;
+    margin: 0 auto;
+    padding-top: 1rem;
+    width: 90%;
+    
+}
+
+main .manageDepartment .modal-content {
+    width: 90%;
+}
+
+main .manageDepartment .jumbo {
+    overflow: auto;
+    width: 20rem;
+    max-height: 30rem;
+
+}
+
+
+main .manageDepartment .jumbotron{
+    width: 100%;
+    max-width: 40rem;
+    
+}
+
+main .manageDepartment table th:last-child{
+    padding: 0 2rem 0 2rem;
+
+    
+}
+
+/* Styling for the modal content */
+.manageDepartment .modal-content {
+    background-color: #fff;
+    margin: 30% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 7px;
+    width: 50%;
+    position: relative;
+}
+
+
+
+}
+
+@media screen and (max-width: 380px) {
+    .manageUser .jumbo {
+        overflow: auto;
+        width: 18rem;
+    }
+}

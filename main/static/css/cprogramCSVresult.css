@@ -1,0 +1,231 @@
+/* -----Root Variable */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/* Root Variable */
+:root {
+    --color-primary: #7380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light)
+}
+
+
+/*============ MAIN ====================*/
+
+main .cprogram-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+    cursor: pointer;
+}
+
+
+
+main .cprogram-row>div {
+    background: var(--color-white);
+    padding: 0.8rem;
+    border-radius: var(--border-radius-3);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+
+.cprogram-row .subprogram-recommend {
+    color: rgb(65, 241, 109);
+}
+
+.cprogram-row .top-card1 {
+    padding-left: 2rem;
+}
+
+.cprogram-row .top-card2 {
+    padding-left: 2rem;
+}
+
+.cprogram-row .top-card3 {
+    padding-left: 2rem;
+}
+
+.cprogram-row .subprogram-list {
+    margin-top: 1rem;
+    position: relative;
+
+}
+
+.cprogram-row .subprogram-list .drop-down {
+    position: absolute;
+    left: 0;
+}
+
+.cprogram-row .subprogram-list .other1,
+.other2,
+.other3 {
+    position: absolute;
+    margin-top: .4rem;
+    margin-left: .5rem;
+}
+
+.cprogram-row .subprogram-list .other-list1,
+.other-list2,
+.other-list3 {
+    margin-top: .5rem;
+    margin-left: .5rem;
+    display: none;
+}
+
+
+
+main .cprogram-row .sub-programs li {
+    background: var(--color-success);
+    padding: 1rem;
+    border-radius: var(--card-border-radius);
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+
+main .cprogram-row>div:hover {
+    box-shadow: none;
+}
+
+/*smaller laptop*/
+@media screen and (max-width: 1200px) {
+
+
+    main .cprogram-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+}
+
+
+.datas .graph2 {
+    display: grid;
+    grid-template-columns: 20rem 20rem auto;
+
+    gap: 1.6rem;
+}
+
+.datas .graph2>div {
+    padding: 1rem;
+    border-radius: var(--card-border-radius);
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    border: .01rem solid rgb(167, 167, 167);
+
+
+}
+
+.datas .graph2>div:hover {
+    box-shadow: none;
+}
+
+
+/*Graph 3*/
+.datas .graph3 {
+    display: grid;
+    /*grid-template-columns: repeat(2, 1fr);*/
+    grid-template-columns: 1fr;
+
+}
+
+.datas .graph3>div {
+    padding: 1rem;
+    border-radius: var(--card-border-radius);
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    border: .01rem solid rgb(167, 167, 167);
+}
+
+.datas .graph3>div:hover {
+    box-shadow: none;
+}
+
+
+/* ---------- RESULT ----------------*/
+
+.result {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+    border-radius: var(--border-radius-1);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    background: var(--color-white);
+    padding: 0.8rem;
+    padding-left: 2rem;
+    box-shadow: 0 2rem 3rem var(--color-light);
+    transition: all 300ms ease;
+}
+
+.result h1 {
+    font-size: 1rem;
+}
+
+/* ------------------- MOBILE -------------------- */
+@media screen and (max-width: 400px) {
+    .datas .graph2 {
+        grid-template-columns: 1fr;
+        margin: 0 auto;
+        margin-bottom: 1.5rem;
+    }
+
+    .datas .graph2>div {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .datas .graph3>div {
+        width: 90%;
+        margin: 0 auto;
+        gap: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    main .program-row>div {
+        width: 90%;
+        margin: 0 auto;
+        gap: 1.6rem;
+        margin-top: 1rem;
+    }
+
+    .result {
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.result .green {
+    color: #19be87;
+}
+
+.result .orange {
+    color: rgb(214, 122, 23);
+}

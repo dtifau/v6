@@ -1,0 +1,271 @@
+{% extends "admin_dashboard.html" %}
+{% block title %} Resources{% endblock %}
+{% block content %}
+<div class="margin-top"></div>
+{% with messages = get_flashed_messages(category_filter=['delete_account', 'add_community', 'existing_community'],
+with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="flash flash-{{ category }}">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<div class="resources_Card">
+    <div class="jumbotron">
+        
+        <div class="for_filter">
+            <div class="year-filter1">
+                <label for="year">Select Year:</label>
+                <select id="year" onchange="filterByYear()">
+                    {% for year in range(current_year, current_year + 5) %}
+                    <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>
+                <button class="show-all-button" onclick="showAllData()">Show All</button>
+            </div>
+        
+            <h2 style="margin-bottom: 1rem;">Resources
+                <button type="button" class="btn-add" data-bs-toggle="modal" data-bs-target="#mymodal"
+                    style="float: right;">
+                    <span class="material-symbols-sharp" style="float: right;">add</span>
+                </button>
+            </h2>
+        </div>
+        <div class="table-card">
+            <table class="table table-striped" id="logs_table">
+                <thead>
+                    <tr>
+                        <th style="display: none;">ID</th>
+                        <th>Community</th>
+                        <th>Program</th>
+                        <th>Coordinator</th>
+                        <th>Date</th>
+                        <th>Activity</th>
+                        <th>Url</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                {% for row in community %}
+                <tbody>
+                    <tr>
+                        <td style="display: none;">{{ row.id}}</td>
+                        <td>{{row.community}}</td>
+                        <td>{{ row.program}}</td>
+                        <td>{{row.user}}</td>
+                        <td>{{ row.date}}</td>
+                        <td style="max-width: 10rem; overflow: hidden; word-wrap: break-word; text-align: left;">{{row.activity}}</td>
+                        <td style="max-width: 10rem; overflow: hidden; word-wrap: break-word; text-align: left;">
+                            <a href="https://{{ row.url }}" style="color: rgb(19, 19, 173); text-decoration: underline;" class="btn-edit" target="_blank">{{ row.url }}</a>
+                        </td>
+                        <td><a href="{{ url_for('dbModel.delete_resources', id=row.id,community=row.community, program=row.program) }}" class="btn-delete1" onclick="return confirm('Are you sure to delete?')">Delete</a></td>
+                    
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+            <p id="noRecordsMessage" style="display: none;">No records found.</p>
+
+            <!-- Modal -->
+            <div id="mymodal" class="modal" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Resources details</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="uploading" action="{{ url_for('dbModel.add_resources') }}" method="POST"
+                                enctype="multipart/form-data" id="upload-form">
+                                <!-- PPA -->
+                                <label class="PPA label-category">PPA (Program, Project, Activity)</label>
+                                <div class="form-group">
+                                    <label>Community:</label>
+                                    <input type="text" class="form-control" name="community" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Program:</label>
+                                    {{ form.program(class="form-select", value=form.program.default) }}
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Coordinator:</label>
+                                    <select class="form-select" name="user" id="userSelect" required>
+                                    </select>
+                                </div>
+                                <!-- DATE -->
+
+                                <div class="form-group">
+                                    <label>Date:</label>
+                                    <input type="text" class="form-control" name="date" id="start_date_input"
+                                        placeholder="Select Date..." required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Activity:</label>
+                                    <input type="text" class="form-control letters-with-space-input" name="activity"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label>URL:</label>
+                                    <input type="text" class="form-control" name="url" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="btn-submit" type="submit" value="Upload">Add Resources</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"><span
+                                    class="material-symbols-sharp">close</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end add modal account-->
+    </div> <!--end jumbotron-->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        coordinator_name();
+        date_picker();
+    });
+</script>
+
+<script>
+    // Remove any non-letter characters from the input
+    document.querySelectorAll(".letters-with-space-input").forEach(function (element) {
+        element.addEventListener("input", function (event) {
+            // Remove any non-letter and non-space characters from the input
+
+            this.value = this.value.replace(/[^A-Za-z\s]|(?<=\s)\s+|\s+(?=\s)/g, "");
+
+        });
+    });
+</script>
+
+<script>
+
+    function coordinator_name() {
+        program_select = document.getElementById('program')
+        program_select.onchange = function () {
+            var program = program_select.value;
+            fetch('/subprogram1/' + program).then(function (response) {
+                response.json().then(function (data) {
+                    var optionHTML = '';
+                    var selectElement = document.getElementById('userSelect');
+
+                    for (user of data.users) {
+                        // Combine firstname and lastname and set it as the option value
+                        var fullname = user.firstname + ' ' + user.lastname;
+                        optionHTML += '<option value="' + fullname + '">' + fullname + '</option>'
+                    }
+
+                    selectElement.innerHTML = optionHTML;
+                });
+            });
+
+            fetch('/department1/' + program).then(function (response) {
+                response.json().then(function (data) {
+                    var optionHTML = '';
+                    var selectElement = document.getElementById('departmentSelect');
+
+                    for (user of data.users) {
+                        // Set department_A as the option value
+                        var department_A = user.department_A;
+                        optionHTML += '<option value="' + department_A + '">' + department_A + '</option>'
+                    }
+
+                    selectElement.innerHTML = optionHTML;
+                });
+            });
+        }
+    }
+
+    //date picker
+    var startDateInput;
+    function date_picker() {
+
+        flatpickr("#start_date_input", {
+
+            onChange: function (selectedDates, dateStr, instance) {
+                // Enable the "End date" input and set the minimum date to the selected "Start date"
+                flatpickr("#end_date_input", {
+                    dateFormat: "Y-m-d",
+                    altInput: true,
+                    altFormat: "F j, Y",
+                    minDate: dateStr,
+                });
+            }
+        });
+
+        startDateInput = flatpickr("#start_date_input", {
+            dateFormat: "Y-m-d",
+            altInput: true,
+            altFormat: "F j, Y",
+            minDate: "today",
+            onChange: function (selectedDates, dateStr, instance) {
+                // Enable the "End date" input and set the minimum date to the selected "Start date"
+                flatpickr("#end_date_input", {
+                    dateFormat: "Y-m-d",
+                    altInput: true,
+                    altFormat: "F j, Y",
+                    minDate: dateStr,
+                });
+            }
+        });
+
+
+        flatpickr("#end_date_input", {
+            disable: [
+                ({ day, month, year }) => startDateInput.selectedDates.length === 0 || startDateInput.selectedDates[0].getTime() !== new Date(year, month, day).getTime()
+            ]
+        });
+    }
+</script>
+
+<script>
+    function filterByYear() {
+        var selectedYear = $("#year").val();
+        var recordsFound = false;
+
+        // You can use AJAX to fetch data for the selected year and update the table accordingly
+        // For simplicity, let's assume the data is already present and just hide/show rows
+        $("#logs_table tbody tr").each(function () {
+            var rowYear = $(this).find("td:eq(4)").text().split('-')[0]; // Assuming the year is in the second column
+            if (rowYear === selectedYear || selectedYear === "All") {
+                $(this).show();
+                recordsFound = true;
+            } else {
+                $(this).hide();
+            }
+        });
+
+        // Display or hide the "No records found" message
+        if (recordsFound) {
+            $("#noRecordsMessage").hide();
+        } else {
+            $("#noRecordsMessage").show();
+        }
+    }
+
+    function showAllData() {
+        // Show all rows
+        $("#logs_table tbody tr").show();
+
+        // Hide the "No records found" message
+        $("#noRecordsMessage").hide();
+    }
+</script>
+{% endblock %}

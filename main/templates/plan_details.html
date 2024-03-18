@@ -1,0 +1,181 @@
+{% extends "admin_dashboard.html" %}
+{% block title %}Projects Plan Details{% endblock %}
+{% block content %}
+<div class="margin-top"></div>
+    {% with messages = get_flashed_messages(category_filter=['delete_account', 'add_community', 'existing_community'], with_categories=true) %}
+        {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+<div class="plan_detailsCard">
+    <div class="plan_detailsBox">
+        <h2 style="margin-bottom: 1rem;">CESU <b>Projects Plan Details</b></h2> 
+        <form action="{{ url_for('dbModel.update_plan')}}" method="POST" enctype="multipart/form-data" id="upload-form">
+            <input type="text" style="display: none;" class="form-control" name="id" value="{{id}}" required>
+            <!-- PPA -->
+            <label class="PPA label-category">PPA (Program, Project, Activity)</label>
+            <div class="form-group">
+                <label>Community:</label>
+                <input type="text" class="form-control" name="community" value="{{community}}" required>
+            </div>
+            <div class="form-group">
+                <label>Program:</label>
+                <input type="text" class="form-control" name="program" value="{{program}}" readonly>
+            </div>
+            <div class="form-group">
+                <label>Sub-program:</label>
+                <input type="text" class="form-control" name="subprogram" value="{{subprogram}}" required >
+            </div>
+            <br>
+            <!-- TIMEFRAME -->
+            <label class="timeframe label-category">TIMEFRAME</label>
+            <div class="time-frame">
+                <div class="form-group">
+                    <label>Start date:</label>
+                    <input type="text" class="form-control" name="start_date" id="start_date_input"  value="{{start_date}}" required >
+                </div>
+                <div class="form-group">
+                    <label>End date:</label>
+                    <input type="text" class="form-control" name="end_date" id="end_date_input" value="{{end_date}}" required >
+                </div>  
+                <div class="form-group">
+                    <label>Total Week:</label>
+                    <input type="number" class="form-control" name="totalWeek" value="{{totalWeek}}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Budget:</label>
+                <input type="number" class="form-control" name="budget" value="{{budget}}" required>
+            </div>
+            <br>
+           
+            <!-- ACCOUNTABILITY -->
+            <label class="accountability label-category">ACCOUNTABILITY</label><br>
+            <div class="form-group">
+                <label>Coordinator:</label>
+                <input type="text" class="form-control" name="user" value="{{user}}" required>
+            </div>
+            <div class="form-group">
+                <label>Department:</label>
+                <input type="text" class="form-control" name="department_A" value="{{department_A}}" required>
+            </div>
+            <div class="form-group">
+                <label>LEAD:</label>
+                <input type="text" class="form-control" name="lead" value="{{department}}" required >
+            </div>
+            <div class="form-group">
+                <label>SUPPORT:</label>
+                <input type="text" class="form-control" name="support" value="{{subDepartment}}" required >
+            </div>
+            <div class="form-group">
+                <label>Volunteer(s):</label>
+                <input type="number" class="form-control" name="volunteer" value="{{volunteer}}" required >
+            </div>
+            <br>
+
+            <!-- FILE -->
+            <label class="file label-category">CESU FILE</label><br>
+            <div class="fileces">
+        
+                <div class="form-group file-box" id="tooltip">
+                    <p for="CPF">Community Profiling Form</p>
+                    {% if cpf_filename %}
+                    <span id="tooltipText">download</span>
+                <a href="{{ url_for('dbModel.view_cpf_plan', program=program, subprogram=subprogram, community=community, cpf_filename=cpf_filename) }}">{{ cpf_filename }}</a>
+                {% else %}
+                <div class="form-group file-box">                    
+                    <input class="CPF" type="file" name="CPF" id="CPF" accept=".pdf, .docx" required>
+                </div>
+            {% endif %}
+            </div>
+
+            <div class="form-group file-box" id="tooltip2">
+                <p for="CESAP">CES Activity Proposal</p>
+                {% if cesap_filename %}
+                <span id="tooltipText2">download</span>
+                <a href="{{ url_for('dbModel.view_cesap_plan', program=program, subprogram=subprogram, community=community, cesap_filename=cesap_filename) }}">{{ cesap_filename }}</a>
+                {% else %}
+                <div class="form-group file-box">
+                    <input class="CESAP" type="file" name="CESAP" id="CESAP" accept=".pdf, .docx" required>
+                </div>
+            {% endif %}
+            </div>
+
+            <div class="form-group file-box" id="tooltip3">
+                <p for="CNA">Community Needs Assessment</p>
+                {% if cna_filename %}
+                <span id="tooltipText3">download</span>
+                <a href="{{ url_for('dbModel.view_cna_plan', program=program, subprogram=subprogram, community=community, cna_filename=cna_filename) }}">{{ cna_filename }}</a>
+                {% else %}
+                <div class="form-group file-box">
+                    <input class="CNA" type="file" name="CNA" id="CNA" accept=".csv" required>
+                </div>
+            {% endif %}
+            </div>
+            
+        </div>
+        <div class="form-group">
+            <button class="btn-submit" type="submit" value="Upload">Update</button>
+        </div>
+    </form>
+
+        <div class="cpf_del">
+            <form action="{{ url_for('dbModel.delete_cpf_plan') }}" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this?')">
+                <input style="display: none;" type="text" class="form-control" name="cpf_id" value="{{id}}" required>
+                <button class="cpf_delete" type="submit"><span class="material-symbols-outlined">
+                    delete
+                    </span></button>
+                    
+            </form>
+        </div>
+        <div class="cesap_del">
+            <form action="{{ url_for('dbModel.delete_cesap_plan') }}" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this?')">
+                <input style="display: none;" type="text" class="form-control" name="cesap_id" value="{{id}}" required>
+                <button class="cesap_delete" type="submit"><span class="material-symbols-outlined">
+                    delete
+                    </span></button>
+            </form>
+        </div>
+        <div class="cna_del">
+            <form action="{{ url_for('dbModel.delete_cna_plan') }}" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this?')">
+                <input style="display: none;" type="text" class="form-control" name="cna_id" value="{{id}}" required>
+                <button class="cna_delete" type="submit"><span class="material-symbols-outlined">
+                    delete
+                    </span></button>
+            </form>
+        </div>
+
+        <form action="{{ url_for('dbModel.deploy')}}" method="POST" enctype="multipart/form-data" id="upload-form">
+            <input type="text" style="display: none;" class="form-control" name="community" value="{{community}}" readonly>
+            <input type="text" style="display: none;" class="form-control" name="program" value="{{program}}" readonly>
+            <input type="text" style="display: none;" class="form-control" name="subprogram" value="{{subprogram}}" readonly >
+            <button class="btn-deploy" type="submit">Deploy</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+<script>
+    flatpickr("#start_date_input", {
+    dateFormat: "Y-m-d",
+    altInput: true,
+    altFormat: "F j, Y"
+});
+
+flatpickr("#end_date_input", {
+            dateFormat: "Y-m-d",
+            altInput: true,
+            altFormat: "F j, Y"
+        });
+</script>
+
+{% endblock %}

@@ -1,0 +1,179 @@
+{% extends "admin_dashboard.html" %}
+{% block title %}KAAKBAY Programs{% endblock %}
+{% block content %}
+
+
+<div class="kaakbay_container">
+    <a class="literacy kaakbay_card" href="{{url_for('dbModel.coordinator', data='Literacy')}}">
+        <div class="kaakbay_title">
+            <h1>Literacy</h1>
+        </div>
+
+        <div class="kaakbay_content">
+            <div class="coordinator">
+                <h2>{{literacy_firstname}}</h2>
+                <p class="text-muted">Coordinator</p>
+            </div>
+            <div class="status">
+                <h2 class="orange">Ongoing</h2>
+                <h2 class="green">Completed</h2>
+            </div>
+            <div class="statusNumber">
+                <h2>{{literacy_ongoing_count}}</h2>
+                <h2>{{literacy_completed_count}}</h2>
+            </div>
+        </div>
+    </a>
+
+    <a class="economic kaakbay_card" href="{{url_for('dbModel.coordinator', data='Socio-economic')}}">
+        <div class="kaakbay_title">
+            <h1>Socio-economic</h1>
+        </div>
+
+        <div class="kaakbay_content">
+            <div class="coordinator">
+                <h2>{{economic_firstname}}</h2>
+                <p class="text-muted">Coordinator</p>
+            </div>
+            <div class="status">
+                <h2 class="orange">Ongoing</h2>
+                <h2 class="green">Completed</h2>
+            </div>
+            <div class="statusNumber">
+                <h2>{{socio_ongoing_count}}</h2>
+                <h2>{{socio_completed_count}}</h2>
+            </div>
+        </div>
+    </a>
+    <a class="environment kaakbay_card" href="{{url_for('dbModel.coordinator', data='Environmental Stewardship')}}">
+        <div class="kaakbay_title">
+            <h1>Environmental Stewardship</h1>
+        </div>
+
+        <div class="kaakbay_content">
+            <div class="coordinator">
+                <h2>{{environmental_firstname}} </h2>
+                <p class="text-muted">Coordinator</p>
+            </div>
+            <div class="status">
+                <h2 class="orange">Ongoing</h2>
+                <h2 class="green">Completed</h2>
+            </div>
+            <div class="statusNumber">
+                <h2>{{environmental_ongoing_count}}</h2>
+                <h2>{{environmental_completed_count}}</h2>
+            </div>
+        </div>
+    </a>
+    <a class="health kaakbay_card" href="{{url_for('dbModel.coordinator', data='Health and Wellness')}}">
+        <div class="kaakbay_title">
+            <h1>Health and Wellness</h1>
+        </div>
+
+        <div class="kaakbay_content">
+            <div class="coordinator">
+                <h2>{{health_firstname}}</h2>
+                <p class="text-muted">Coordinator</p>
+            </div>
+            <div class="status">
+                <h2 class="orange">Ongoing</h2>
+                <h2 class="green">Completed</h2>
+            </div>
+            <div class="statusNumber">
+                <h2>{{health_ongoing_count}}</h2>
+                <h2>{{health_completed_count}}</h2>
+            </div>
+        </div>
+    </a>
+    <a class="cultural kaakbay_card" href="{{url_for('dbModel.coordinator', data='Cultural Enhancement')}}">
+        <div class="kaakbay_title">
+            <h1>Cultural Enhancement</h1>
+        </div>
+
+        <div class="kaakbay_content">
+            <div class="coordinator">
+                <h2>{{cultural_firstname}}</h2>
+                <p class="text-muted">Coordinator</p>
+            </div>
+            <div class="status">
+                <h2 class="orange">Ongoing</h2>
+                <h2 class="green">Completed</h2>
+            </div>
+            <div class="statusNumber">
+                <h2>{{cultural_ongoing_count}}</h2>
+                <h2>{{cultural_completed_count}}</h2>
+            </div>
+        </div>
+    </a>
+    <a class="values kaakbay_card" href="{{url_for('dbModel.coordinator', data='Values Formation')}}">
+        <div class="kaakbay_title">
+            <h1>Values Formation</h1>
+        </div>
+
+        <div class="kaakbay_content">
+            <div class="coordinator">
+                <h2>{{values_firstname}} </h2>
+                <p class="text-muted">Coordinator</p>
+            </div>
+            <div class="status">
+                <h2 class="orange">Ongoing</h2>
+                <h2 class="green">Completed</h2>
+            </div>
+            <div class="statusNumber">
+                <h2>{{values_ongoing_count}}</h2>
+                <h2>{{values_completed_count}}</h2>
+            </div>
+        </div>>
+    </a>
+    <a class="disaster kaakbay_card" href="{{url_for('dbModel.coordinator', data='Disaster Management')}}">
+        <div class="kaakbay_title">
+            <h1>Disaster Management</h1>
+        </div>
+
+        <div class="kaakbay_content">
+            <div class="coordinator">
+                <h2>{{disaster_firstname}}</h2>
+                <p class="text-muted">Coordinator</p>
+            </div>
+            <div class="status">
+                <h2 class="orange">Ongoing</h2>
+                <h2 class="green">Completed</h2>
+
+            </div>
+            <div class="statusNumber">
+                <h2>{{disaster_ongoing_count}}</h2>
+                <h2>{{disaster_completed_count}}</h2>
+            </div>
+        </div>
+    </a>
+    <a class="gender kaakbay_card" href="{{url_for('dbModel.coordinator', data='Gender and Development')}}">
+        <div class="kaakbay_title">
+            <h1>Gender and Development</h1>
+        </div>
+
+        <div class="kaakbay_content">
+            <div class="coordinator">
+                <h2>{{gender_firstname}}</h2>
+                <p class="text-muted">Coordinator</p>
+            </div>
+            <div class="status">
+                <h2 class="orange">Ongoing</h2>
+                <h2 class="green">Completed</h2>
+
+            </div>
+            <div class="statusNumber">
+                <h2>{{gender_ongoing_count}}</h2>
+                <h2>{{gender_completed_count}}</h2>
+            </div>
+        </div>
+    </a>
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+<script src="https://unpkg.com/scrollreveal"></script>
+{% endblock %}

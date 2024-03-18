@@ -1,0 +1,292 @@
+/* -----Root Variable */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/* Root Variable */
+:root {
+    --color-primary: #7380ec;
+    --color-kaakbay: #2f9e36;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light)
+}
+
+/* BACKGROUND TITLE */
+.fund_title {
+    background-color: #303396;
+    color: #ffffff;
+    padding: 10px;
+    border-top-left-radius: var(--border-radius-2);
+    border-top-right-radius: var(--border-radius-2);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 6rem;
+    margin-top: 1rem;
+}
+
+.fund-container {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    padding-bottom: 2.5rem;
+    border-bottom-left-radius: var(--border-radius-2);
+    /* Top left corner radius */
+    border-bottom-right-radius: var(--border-radius-2);
+    /* Top right corner radius */
+    padding-bottom: 2.5rem;
+    position: relative;
+    overflow-x: auto;
+    /* Horizontal scroll if needed */
+    max-height: 500px;
+    /* Set a maximum height for vertical scroll */
+
+}
+
+/* ICON */
+.fund_title .crowdsource {
+    padding-right: 0.5rem;
+    /* Add some right padding to the lock icon */
+    font-size: 2.3rem;
+    /* Adjust the icon size as needed */
+    padding-left: 1rem;
+}
+
+/* ICON TITLE */
+.fund_title .changetxt {
+    padding-left: 0.5rem;
+    font-size: 2.3rem;
+}
+
+.fund_title .fund-container {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    padding-bottom: 4rem;
+    position: relative;
+    border-bottom-left-radius: var(--border-radius-2);
+    /* Top left corner radius */
+    border-bottom-right-radius: var(--border-radius-2);
+    /* Top right corner radius */
+}
+
+.fund-container table td {
+    height: 2.3rem;
+    text-align: left;
+}
+
+.fund-container table {
+    width: 100%;
+}
+
+
+.fund-container table th:first-child {
+    text-align: left;
+    padding-left: 7rem;
+}
+
+.fund-container table td:first-child {
+    text-align: left;
+    padding-left: 7rem;
+}
+
+.fund-container table tr th:nth-child(2) {
+    text-align: left;
+    width: 25%;
+    padding-left: 11rem;
+}
+
+.fund-container table tr td:nth-child(2) {
+    text-align: left;
+    width: 25%;
+    padding-left: 10rem;
+}
+
+.fund-container table tr th:nth-child(3) {
+    text-align: center;
+    width: 25%;
+    padding-left: 7rem;
+}
+
+.fund-container table tr td:nth-child(3) {
+    text-align: center;
+    width: 25%;
+    padding-left: 7rem;
+}
+
+.fund-container table tr td:nth-child(4) {
+    text-align: left;
+    width: 45%;
+    padding-left: 14rem;
+}
+
+
+
+main .logs-container table td {
+    border-bottom: 1px solid lightgray;
+    color: var(--color-dark);
+}
+
+#search_text {
+    width: 25rem;
+    /* Adjust the width as needed */
+    margin-left: 2rem;
+    /* Adjust the left margin as needed */
+    margin-top: 1rem;
+    /* Adjust the top margin as needed */
+}
+
+
+@media screen and (max-width: 760px) {
+    .margin-top {
+        height: 4rem;
+    }
+}
+
+
+
+
+@media screen and (max-width: 400px) {
+
+    .margin-top {
+        height: 4rem;
+
+    }
+
+    .logs-container {
+        margin: 0 auto;
+        width: 90%;
+    }
+
+
+    .logs_title {
+        margin: 0 auto;
+        width: 90%;
+        margin-top: 2rem;
+        position: relative;
+    }
+
+    .logs_title .search_form {
+        padding: 0;
+    }
+
+    #search_text {
+        width: 9rem;
+        /* Set the width of the input field to 100% */
+        box-sizing: border-box;
+        /* Include padding and border in the element's total width and height */
+    }
+
+    .logs-container {
+        height: 30rem;
+    }
+
+
+    .logs_title .changetxt {
+        padding-left: 0.5rem;
+        font-size: 1.7rem;
+        line-height: 2rem;
+    }
+
+    .logs-container .table-card {
+        max-width: 20rem;
+        overflow: auto;
+
+    }
+
+
+    .logs-container table td {
+        height: 2.3rem;
+        text-align: left;
+    }
+
+    .logs-container table tr td:nth-child(2) {
+        text-align: center;
+        padding-left: 0;
+    }
+
+    .logs-container table tr td:nth-child(3) {
+        text-align: center;
+        padding: 0;
+    }
+
+    .logs-container table tr td:nth-child(4) {
+        text-align: left;
+
+        padding-left: 1rem;
+    }
+
+    .logs-container table th:nth-child(4) {
+        text-align: center;
+        padding-left: 0;
+    }
+
+    .logs-container table th:nth-child(3) {
+        text-align: center;
+        padding-left: 1rem;
+    }
+
+    .logs-container table th:nth-child(2) {
+        text-align: center;
+        padding-left: 1rem;
+    }
+}
+
+/* Year Filter */
+.year-filter {
+    margin-bottom: .5rem;
+    margin-left: 30rem;
+}
+
+.year-filter label {
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: large;
+}
+
+.year-filter select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.year-filter select:hover {
+    border-color: #555;
+    /* Change border color on hover */
+}
+
+/* Show all btn */
+.show-all-button {
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.show-all-button:hover {
+    border-color: #555;
+}

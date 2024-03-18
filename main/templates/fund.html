@@ -1,0 +1,106 @@
+{% extends "admin_dashboard.html" %}
+{% block title %}Logs Activity{% endblock %}
+{% block content %}
+<div class="margin-top"></div>
+{% with messages = get_flashed_messages(category_filter=['upload_file', 'delete_file'], with_categories=true) %}
+{% if messages %}
+<div>
+    {% for category, message in messages %}
+    <div class="flash flash-{{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+<div class="fund_title">
+    <h1>
+        <span class="material-symbols-sharp crowdsource">
+            crowdsource
+        </span>
+        <h3 class="changetxt">Fundraising Activity</h3>
+    </h1>
+    <div class="year-filter">
+        <label for="year">Select Year:</label>
+        <select id="year" onchange="filterByYear()">
+            {% for year in range(current_year, current_year + 5) %}
+            <option value="{{ year }}">{{ year }}</option>
+            {% endfor %}
+        </select>
+        <button class="show-all-button" onclick="showAllData()">Show All</button>
+    </div>
+    </form>
+</div>
+
+
+<div class="fund-container">
+    <div class="table-card">
+        <table class="table table-striped" id="logs_table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Profit</th>
+                    <th>Total Expenses</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Booth</td>
+                    <td>2024-02-21</td>
+                    <td>15,000</td>
+                    <td>8,000</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>Booth</td>
+                    <td>2026-02-21</td>
+                    <td>15,000</td>
+                    <td>8,000</td>
+                </tr>
+            </tbody>
+        </table>
+        <p id="noRecordsMessage" style="display: none;">No records found.</p>
+    </div>
+    <hr>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+    function filterByYear() {
+        var selectedYear = $("#year").val();
+        var recordsFound = false;
+
+        // You can use AJAX to fetch data for the selected year and update the table accordingly
+        // For simplicity, let's assume the data is already present and just hide/show rows
+        $("#logs_table tbody tr").each(function () {
+            var rowYear = $(this).find("td:eq(1)").text().split('-')[0]; // Assuming the year is in the second column
+            if (rowYear === selectedYear || selectedYear === "All") {
+                $(this).show();
+                recordsFound = true;
+            } else {
+                $(this).hide();
+            }
+        });
+
+        // Display or hide the "No records found" message
+        if (recordsFound) {
+            $("#noRecordsMessage").hide();
+        } else {
+            $("#noRecordsMessage").show();
+        }
+    }
+
+    function showAllData() {
+        // Show all rows
+        $("#logs_table tbody tr").show();
+
+        // Hide the "No records found" message
+        $("#noRecordsMessage").hide();
+    }
+</script>
+
+{% endblock %}

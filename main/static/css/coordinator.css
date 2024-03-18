@@ -1,0 +1,428 @@
+/* -----Root Variable */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/* Root Variable */
+:root {
+    --color-kaakbay: #2f9e36;
+    --color-admin:#303396;
+    --color-primary: #7380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+    --color-ongoing: rgb(214, 122, 23);
+  
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light)
+}
+.text-orange {
+    color: rgb(45, 63, 232);
+}
+
+.text-green {
+    color: #41f1b6;
+}
+
+
+main .coordinatorCard{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+    margin-top: -2rem;
+   
+}
+
+.coordinatorCard .community-subprogram-title{
+    display: grid;
+    grid-template-columns: 4rem auto;
+}
+
+
+main .coordinatorCard svg circle{
+    fill: none;
+    stroke-width: 16;
+    stroke-linecap: round;
+    transform: translate(8px, 8px);
+    /*transition: all 500ms ease;*/
+    animation: anim 2s linear forwards;
+    
+}
+@keyframes anim{
+    0%{
+        stroke-dashoffset: 157.5;
+    }
+}
+
+main .coordinatorCard > div{
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    position: relative;
+    cursor: pointer;
+}
+
+main .coordinatorCard > div:hover{
+    box-shadow: none;
+}
+
+main .coordinatorCard > div span{
+    background: var(--color-primary);
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: var(--color-white);
+    font-size: 2rem;
+}
+main .coordinatorCard > div .middle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+main .coordinatorCard h3{
+    margin: 1rem 0 0.6rem;
+    font-size: 1rem;
+}
+
+main .coordinatorCard .progress{
+    position:relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+}
+main .coordinatorCard svg{
+    width: 7rem;
+    height: 7rem;
+}
+main .coordinatorCard svg circle{
+    fill: none;
+    
+    stroke-width: 16;
+    stroke-linecap: round;
+    transform: translate(8px, 8px);
+}
+
+main .coordinatorCard .progress .number{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .coordinatorCard small{
+    margin-top: 1.3rem;
+    display: block;
+}
+
+
+/* For Checkboxes */
+main .coordinatorCard .checkbox-group{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1;
+    margin-bottom: 4rem;
+    margin-left: 1rem;  
+}
+
+
+  main .coordinatorCard .form-check .label {
+    font-weight:normal; 
+    font-size: 1rem; 
+    color: #242424; 
+    position: absolute;
+    margin-top: 1rem;
+    
+  }
+  
+ 
+  main .coordinatorCard .form-check input {
+    width: 1.5rem; 
+    height: 1.5rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-right: 2px;
+  }
+
+
+main .coordinatorCard .insights-div{
+    position: relative;
+ 
+}
+
+  /* Save Button Styles */
+main .coordinatorCard .save-button {
+    background-color: #05ae11;
+    color: #fff;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+}
+
+main .coordinatorCard .save-button:hover {
+    background-color: #49a14f;
+    cursor: pointer;
+}
+
+  /* Save Button Styles */
+  main .coordinatorCard .archive-button {
+    background-color: orangered;
+    color: #fff;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+}
+
+main .coordinatorCard .archive-button:hover {
+    background-color:  var(--color-danger);
+    cursor: pointer;
+}
+
+  /* textarea*/
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 1rem;
+  }
+  
+  #textarea {
+    height: 5rem;
+  }
+ 
+/*smaller laptop*/
+@media screen and (max-width: 1200px){
+    main .coordinatorCard{
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+}
+.checked {
+    text-decoration: line-through;
+}
+
+.coordinatorCard .insights-div:first-child {
+    display: none;
+}
+
+/*FOR NO DATA FOUND*/
+
+.notfound1{
+    display: none;
+}
+.notfound{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    margin-top: 4rem;
+}
+
+.notfound .no-data {
+    text-align: center;
+    width: 35rem;
+    height: 20rem;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+
+}
+
+.notfound h1 {
+    font-size: 2rem;
+    color: #333;
+    margin: 0;
+    margin-top: 2rem;
+}
+
+.notfound p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #777;
+}
+
+
+/* date start and end*/
+main .coordinatorCard .date-card{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+    grid-row-gap: 0;
+    margin-top: 2rem;
+}
+
+main .coordinatorCard .date-card .date-card-content{
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: .6rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    position: relative;
+}
+
+main .coordinatorCard .date-card .date-title{
+    text-align: center;
+    font-weight: 800;
+    letter-spacing: 0.1rem;
+}
+
+main .coordinatorCard .date-card .start-title-green{
+    color: var(--color-success);
+}
+main .coordinatorCard .date-card .end-title-red{
+    color: var(--color-danger);
+}
+main .coordinatorCard .date-card .date-card-content{
+    padding: 0;
+}
+
+main .coordinatorCard .date-card .date-card-content .box-color-green{
+    background-color: var(--color-success);
+    width: 100%;
+    height: 1rem;
+    border-top-left-radius: var(--border-radius-1); /* Top left corner radius */
+    border-top-right-radius: var(--border-radius-1); /* Top right corner radius */
+}
+main .coordinatorCard .date-card .date-card-content .box-color-red{
+    background-color: var(--color-danger);
+    width: 100%;
+    height: 1rem;
+    border-top-left-radius: var(--border-radius-1); /* Top left corner radius */
+    border-top-right-radius: var(--border-radius-1); /* Top right corner radius */
+}
+
+
+main .coordinatorCard .date-card .date-card-content .date-content {
+   
+    padding: 2rem;
+   
+}
+
+main .coordinatorCard .date-card .date-card-content .date-content .text-muted{
+   margin-top: auto;
+   text-align: center;
+   margin-bottom: auto;
+   font-size: 1rem;
+}
+
+main .coordinatorCard .community-status{
+    position: absolute;
+    right: 1rem;
+    top: .5rem;
+    font-size: .8rem;
+}
+
+
+.kaakbay-subprogram-title h1{
+    color: white;
+    margin-left: 3rem;
+    position: absolute;
+    font-size: 3rem;
+    margin-top: 2rem;
+}
+
+.kaakbay-design-title{
+    
+    border-top-left-radius: var(--border-radius-3); /* Top left corner radius */
+    border-top-right-radius: var(--border-radius-3); /* Top right corner radius */
+    
+}
+
+
+/* LINK BEFORE ARCHIVE */
+main .coordinatorCard .link-input{
+    margin: 0 0 0.3rem 1rem;
+    width: 65%;
+    height: 2rem;
+}
+
+@media screen and (max-width: 400px){
+    .kaakbay-subprogram-title{
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .coordinatorCard{
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .kaakbay-subprogram-title h1{
+        color: white;
+        margin-left: 2rem;
+        font-size: 2rem;
+        top: 4.5rem;
+    }
+        /* For Checkboxes */
+    main .coordinatorCard .checkbox-group{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+
+    main .coordinatorCard .form-check .label {
+        font-weight:normal; 
+        font-size: 1rem; 
+        color: #242424; 
+        position: absolute;
+        margin-top: 1rem;
+    }
+    
+    
+    main .coordinatorCard .form-check input {
+        width: 1.5rem; 
+        height: 1.5rem;
+        cursor: pointer;
+        margin-top: 1rem;
+        margin-right: 2px;
+    }
+
+    /*FOR NO DATA FOUND*/
+
+
+    .notfound .no-data {
+        width: 90%;
+        height: 13rem;
+        margin: 0 auto;
+        margin-top: 7rem;
+    }
+
+    .notfound h1 {
+        margin: 0;
+    }
+
+    
+   
+}
+
+
+

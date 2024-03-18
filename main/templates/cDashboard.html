@@ -1,0 +1,62 @@
+{% extends "coordinator_dashboard.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="margin-top"></div>
+<div class="dashboard-bg">
+    <img class="" src="/static/images/CES.png">
+</div>
+
+<div class="Cdashboard-container">
+    <a class="dashboard-card" href="{{ url_for('coordinator.cManage_community') }}">
+        <div class="Cdashboard-title">
+            <h1>My Community</h1>
+            <span class="material-symbols-sharp dashboard-icon">groups</span>
+            <span class="dashboard-bubble1"></span>
+            <span class="dashboard-bubble2"></span>
+
+        </div>
+        <div class="Cdashboard-description">
+            <p class="text-muted">View and add community projects.</p>
+        </div>
+    </a>
+
+    <a class="dashboard-card" href="{{ url_for('coordinator.cCoordinator') }}">
+        <div class="dashboard-title">
+            <h1>My Community <br>Program</h1>
+            <span class="material-symbols-sharp dashboard-icon">groups</span>
+            <span class="dashboard-box1"></span>
+        </div>
+        <div class="dashboard-description">
+            <p class="text-muted">Track community projects linked to the {{current_program}} program—view projects'
+                progress.</p>
+        </div>
+    </a>
+
+    <a class="dashboard-card" href="{{ url_for('randomForest.cProgram') }}">
+        <div class="dashboard-title">
+            <h1>Program Recommendation</h1>
+            <span class="material-symbols-sharp dashboard-icon">neurology</span>
+            <span class="dashboard-bubble1"></span>
+            <span class="dashboard-bubble2"></span>
+        </div>
+        <div class="dashboard-description">
+            <p class="text-muted">Decision Support System: Suggest top 3 programs based from Community Needs Assessment.
+            </p>
+        </div>
+    </a>
+
+    <a class="dashboard-card" href="{{ url_for('file.cFiles') }}">
+        <div class="dashboard-title">
+            <h1>CESU Files</h1>
+            <span class="material-symbols-sharp dashboard-icon">folder</span>
+            <span class="dashboard-box1"></span>
+        </div>
+        <div class="dashboard-description">
+            <p class="text-muted">View and download CESU files.</p>
+        </div>
+    </a>
+</div>
+
+
+{% endblock %}

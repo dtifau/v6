@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .error-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4285f4;
+        }
+    </style>
+    <link class="favicon" rel="icon" href="{{ url_for('static', filename='images/cesu-icon.ico') }}"
+        type="image/x-icon">
+</head>
+
+<body>
+    <div class="error-container">
+        <h1>Something went wrong</h1>
+        <p>We're sorry, but an error occurred while processing your request.</p>
+        <p>Please try again later or <a href="{{ url_for('randomForest.cProgram') }}">go back to the Program page</a>.
+        </p>
+    </div>
+</body>
+
+</html>

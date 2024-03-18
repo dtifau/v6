@@ -1,0 +1,51 @@
+{% extends "admin_dashboard.html" %}
+{% block title %}Program Recommendation{% endblock %}
+{% block content %}
+
+<div class="margin-top"></div>
+<div class="program_recommendation_title program_recommendation_title-blue">
+    <h1>
+        <span class="material-symbols-sharp">
+            recommend
+            </span> <h3 class="programtxt">Kaakbay Program Recommendation</h3>
+    </h1>
+</div>
+
+<div class="programCard">
+    <div class="program-form">
+        <form method="POST" action="{{ url_for('randomForest.programWithCSV') }}" enctype="multipart/form-data" id="upload-form">
+            <label for="formFile" class="programForm">Upload CESU CSV file</label>
+                    <input class="form-submit" type="file" name="csv_file" id="formFile" accept=".csv" required>
+                    <input class="btn-submit btn-submit-blue" type="submit" style="float: right;" value="Upload" id="submit-button" onclick="myfunction(); return false;">
+        </form>
+    </div>
+</div>
+<script>
+    // Attach an event handler for the form submission
+    if (window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+    function myfunction(){
+        // Create a FormData object to send the file
+        var formData = new FormData(this);
+
+        // Send an Ajax POST request to the server
+        $.ajax({
+            url: "{{ url_for('randomForest.programWithCSV') }}",
+            type: "POST",
+            data: formData,
+            processData: false, // Prevent jQuery from converting the data to a query string
+            contentType: false, // Prevent jQuery from setting the content type
+            success: function(response) {
+                // Update the content of the result container with the response
+                $('#result-container').html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error("Ajax request failed:", error);
+            }
+        });
+    }
+</script>
+
+{% block results %}{% endblock %}     
+{% endblock %}

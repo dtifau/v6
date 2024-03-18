@@ -1,0 +1,418 @@
+{% extends "program.html" %}
+{% block title %}Result{% endblock %}
+{% block results %}
+
+<div class="program-row">
+    <!--Top 1-->
+    <div class="top-card1">
+        <h2 class="prediction" data-program="{{ top1.program }}">
+            {{ top1.program }} <small class="text-muted">({{ top1.quantity }} rows)</small>
+        </h2>
+        <div data-program="{{ top1_2.program }}" class="subprogram-recommend">
+            <h4>{{ top1_2.program }}</h4>
+        </div>
+        <div class="subprogram-list">
+            <span class="material-symbols-sharp drop-down1">
+                expand_circle_down
+            </span> <small class="other1">Other Kaakbay programs</small>
+            <div class="other-list1">
+                {% for sub_program in top1.sub_programs %}
+                    <li>{{ sub_program }}</li>
+                {% endfor %}
+            </div>
+        </div>      
+    </div>
+    <!--Top 2-->
+    <div class="top-card2">
+        <h2 class="prediction" data-program="{{ top2.program }}">
+            {{ top2.program }} <small class="text-muted">({{ top2.quantity }} rows)</small>
+        </h2>
+        <div data-program="{{ top2_2.program }}" class="subprogram-recommend">
+            <h4>{{ top2_2.program }}</h4>
+        </div>
+        <div class="subprogram-list">
+            <span class="material-symbols-sharp drop-down2">
+                expand_circle_down
+            </span> <small class="other2">Other Kaakbay programs</small>
+            <div class="other-list2">
+            {% for sub_program in top2.sub_programs %}
+                <li>{{ sub_program }}</li>
+            {% endfor %}
+            </div>
+        </div>       
+    </div>
+    <!--Top 3-->
+    <div class="top-card3">
+        <h2 class="prediction" data-program="{{ top3.program }}">
+            {{ top3.program }} <small class="text-muted">({{ top3.quantity }} rows)</small>
+        </h2>
+        <div data-program="{{ top1_2.program }}" class="subprogram-recommend">
+            <h4>{{ top3_2.program }}</h4>
+        </div>
+        <div class="subprogram-list">
+            <span class="material-symbols-sharp drop-down3">
+                expand_circle_down
+            </span> <small class="other3">Other Kaakbay programs</small>
+            <div class="other-list3">
+                {% for sub_program in top3.sub_programs %}
+                    <li>{{ sub_program }}</li>
+                {% endfor %}
+            </div>
+        </div>       
+    </div>
+</div>
+
+<div class="result">
+    <h1>The category with the highest number of requests is <span id="max_category" class="green">{{ max_category }}</span> with <span id="highest_count">{{ highest_count }}</span> requests.</h1>
+    <h1>Recommended Program: <span id="program_ces" class="orange">{{ program_ces }}</span></h1>
+</div>
+
+<div class="datas">
+    <div class="graph2">
+            <!--------------------- KASARIAN ------------------------>
+        <div class="kasarianChart">
+            <canvas id="kasarianchart"></canvas></div>
+        <!--------------------- URI NG TRABAHO ------------------------>
+        <div class="trabahoChart">
+                <canvas id="trabahochart"></canvas>
+            </div>  
+               <!--------------------- EDAD ------------------------>
+        <div class="edadChart">
+            <canvas id="edadchart"></canvas>
+        </div>
+    </div>
+
+    <div class="graph3">
+       
+        <!--------------------- TINAPOS NA DEGREE ------------------------>
+        <div class="tinaposChart">
+            <canvas id="tinaposchart"></canvas>
+        </div>  
+         <!--------------------- SERBISYONG KAILANGAN ------------------------>
+        <div class="serbisyoChart">
+            <canvas id="serbisyochart"></canvas>
+        </div>  
+    </div>
+   
+    
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+        $(".drop-down1").on("click", function () {
+            console.log("Element clicked");
+            $(this).siblings(".other-list1").toggle();
+        });
+        $(".other1").on("click", function () {
+            console.log("Element clicked");
+            $(this).siblings(".other-list1").toggle();
+        });
+
+        $(".drop-down2").on("click", function () {
+            console.log("Element clicked");
+            $(this).siblings(".other-list2").toggle();
+        });
+        $(".other2").on("click", function () {
+            console.log("Element clicked");
+            $(this).siblings(".other-list2").toggle();
+        });
+
+        $(".drop-down3").on("click", function () {
+            console.log("Element clicked");
+            $(this).siblings(".other-list3").toggle();
+        });
+        $(".other3").on("click", function () {
+            console.log("Element clicked");
+            $(this).siblings(".other-list3").toggle();
+        });
+
+
+    });
+
+
+</script>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function (){
+
+    /* --------------------------------------- KASARIAN ---------------------------------*/
+    let kasarian_lbl = ['Lalake', 'Babae',]
+    let kasarian_data =['{{ kasarian_counts.get(0, 0) }}', '{{ kasarian_counts.get(1, 0) }}']
+
+    const data1 = {
+        labels: kasarian_lbl,
+        datasets: [
+            {
+                
+                data: kasarian_data,
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)','rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 99, 132)'
+                ],
+            borderWidth: 2
+            },
+        ]
+    };
+
+    const kasarian_config = {
+        type: 'bar',
+        data: data1,
+        options: {
+            indexAxis: 'x',
+            responsive: true,  // Enable responsiveness
+            maintainAspectRatio: false,  // Disable aspect ratio maintenance
+            aspectRatio: 1,  // Set your desired aspect ratio (width:height)
+            plugins: {
+            title: {
+                display: true,
+                text: 'Kasarian'
+            },
+            legend: {
+                display: false,
+            }
+            }   
+        },
+
+    };
+
+     /* --------------------------------------- EDAD ---------------------------------*/
+    let edad_lbl = ['17-below', '18-24', '25-34', '35-44', '45-54', '55-64', '65-Above'];
+    let edad_data = ['{{edad_counts.get(0,0)}}','{{edad_counts.get(1,0)}}','{{edad_counts.get(2,0)}}','{{edad_counts.get(3,0)}}'
+                    ,'{{edad_counts.get(4,0)}}','{{edad_counts.get(5,0)}}','{{edad_counts.get(6,0)}}'];
+    
+    const data2 = {
+        labels: edad_lbl,
+        datasets: [{
+            data: edad_data,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)', /* red */
+                'rgba(255, 159, 64, 0.2)', /* orange */
+                'rgba(255, 205, 86, 0.2)', /*yellow*/
+                'rgba(75, 192, 192, 0.2)',  /*cyan*/
+                'rgba(54, 162, 235, 0.2)', /*blue*/
+                'rgba(153, 102, 255, 0.2)', /*violet*/
+                'rgba(201, 203, 207, 0.2)' /*gray*/
+            ],
+            
+            borderColor: [
+                'rgb(255, 99, 132)', /* red */
+                'rgb(255, 159, 64)', /* orange */
+                'rgb(255, 205, 86)',/*yellow*/
+                'rgb(75, 192, 192)',/*cyan*/
+                'rgb(54, 162, 235)',/*blue*/
+                'rgb(153, 102, 255)',/*violet*/
+                'rgb(201, 203, 207)'/*gray*/
+            ],
+            
+            borderWidth: 2
+        }]
+    };
+    
+    const edad_config = {
+        type: 'bar',
+        data: data2,
+        options: {
+            indexAxis: 'x',
+            responsive: true,
+            maintainAspectRatio: false,
+            aspectRatio: 1,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Edad'
+                },
+                legend: {
+                    display: false,
+                }
+            }
+        }
+    };
+
+    /* ------------------------------------ ANTAS NG TINAPOS ---------------------------------*/
+    let tinapos_lbl = ['Hindi nakapagtapos ng Elementarya', 'Elementarya', 'Hindi nakapagtapos ng Sekundarya', 'Sekundarya', 'Kolehiyo', 'Hindi nakapagtapos ng Kolehiyo', 'Masters Degree', 'Doctorate Degree', 'Hindi nakapag-aral'];
+    let tinapos_data = ['{{ antas_counts.get(0, 0) }}', '{{ antas_counts.get(1, 0) }}', '{{ antas_counts.get(2, 0) }}', '{{ antas_counts.get(3, 0) }}', '{{ antas_counts.get(4, 0) }}', '{{ antas_counts.get(5, 0) }}', '{{ antas_counts.get(6, 0) }}', '{{ antas_counts.get(7, 0) }}', '{{ antas_counts.get(8, 0) }}'];
+    
+    const data3 = {
+        labels: tinapos_lbl,
+        datasets: [{
+            data: tinapos_data,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)', /* red */
+                'rgba(255, 159, 64, 0.2)', /* orange */
+                'rgba(255, 205, 86, 0.2)', /*yellow*/
+                'rgba(75, 192, 192, 0.2)',  /*cyan*/
+                'rgba(54, 162, 235, 0.2)', /*blue*/
+                'rgba(153, 102, 255, 0.2)', /*violet*/
+                'rgba(201, 203, 207, 0.2)', /*gray*/
+                'rgb(77, 255, 77, 0.2)' /*green*/
+            ],
+            
+            borderColor: [
+                'rgb(255, 99, 132)', /* red */
+                'rgb(255, 159, 64)', /* orange */
+                'rgb(255, 205, 86)',/*yellow*/
+                'rgb(75, 192, 192)',/*cyan*/
+                'rgb(54, 162, 235)',/*blue*/
+                'rgb(153, 102, 255)',/*violet*/
+                'rgb(201, 203, 207)',/*gray*/
+                'rgb(0, 255, 0)' /*green*/
+            ],
+            
+            borderWidth: 2
+        }]
+    };
+    
+    const tinapos_config = {
+        type: 'bar',
+        data: data3,
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            aspectRatio: 1,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Antas ng Tinapos'
+                },
+                legend: {
+                    display: false,
+                }
+            }
+        }
+    };
+
+    /* ------------------------------------ URI NG TRABAHO ---------------------------------*/
+    let trabaho_lbl = ['May Trabaho', 'Walang Trabaho'];
+    let trabaho_data = ['{{ uri_counts.get(1, 0) }}', '{{ uri_counts.get(0, 0) }}'];
+    
+    const data4 = {
+        labels: trabaho_lbl,
+        datasets: [{
+            data: trabaho_data,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)', /* red */
+                'rgba(255, 159, 64, 0.2)', /* orange */
+            ],
+            
+            borderColor: [
+                'rgb(255, 99, 132)', /* red */
+                'rgb(255, 159, 64)', /* orange */
+            ],
+            
+            borderWidth: 2
+        }]
+    };
+    
+    const trabaho_config = {
+        type: 'bar',
+        data: data4,
+        options: {
+            indexAxis: 'x',
+            responsive: true,
+            maintainAspectRatio: false,
+            aspectRatio: 1,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Estado ng Trabaho'
+                },
+                legend: {
+                    display: false,
+                }
+            }
+        }
+    };
+
+     /* ------------------------------------ SERBISYO ---------------------------------*/
+
+     let serbisyo_lbl = ['Serbisyong Pangedukasyon', 'Pagsasanay Pangkabuhayan(Livelihood)', 'Pagtatanim', 'Serbisyon Pangkalusugan', 'Serbisyong Dental', 'Kaalamang Pangkultura', 'Values Formation at Moral Recovery', 'Ayudang Pagkain (Food Assistance)', 'Pagrerecycle', 'Pagsasanay Ukol sa Teknolohiya'];
+     let serbisyo_data = ['{{ Pangedukasyon_counts.get(1, 0) }}', '{{ Pangkabuhayan_counts.get(1, 0) }}', '{{ Pagtatanim_counts.get(1, 0) }}','{{ Pangkalusugan_counts.get(1, 0) }}', '{{ Dental_counts.get(1, 0) }}','{{ Pangkultura_counts.get(1, 0) }}', '{{ Values_counts.get(1, 0) }}', '{{ Pagkain_counts.get(1, 0) }}', '{{ Pagrerecycle_counts.get(1, 0) }}', '{{ Teknolohiya_counts.get(1, 0) }}'];
+    
+    const data5 = {
+        labels: serbisyo_lbl,
+        datasets: [{
+            data: serbisyo_data,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)', /* red */
+                'rgba(255, 159, 64, 0.2)', /* orange */
+                'rgba(255, 205, 86, 0.2)', /*yellow*/
+                'rgba(75, 192, 192, 0.2)',  /*cyan*/
+                'rgba(54, 162, 235, 0.2)', /*blue*/
+                'rgba(153, 102, 255, 0.2)', /*violet*/
+                'rgba(201, 203, 207, 0.2)', /*gray*/
+                'rgb(77, 255, 77, 0.2)', /*green*/
+                'rgb(255, 153, 204, 0.2)', /*pink*/
+                'rgb(230, 115, 0, 0.2)' /*brown*/
+            ],
+            
+            borderColor: [
+                'rgb(255, 99, 132)', /* red */
+                'rgb(255, 159, 64)', /* orange */
+                'rgb(255, 205, 86)',/*yellow*/
+                'rgb(75, 192, 192)',/*cyan*/
+                'rgb(54, 162, 235)',/*blue*/
+                'rgb(153, 102, 255)',/*violet*/
+                'rgb(201, 203, 207)',/*gray*/
+                'rgb(0, 255, 0)', /*green*/
+                'rgb(255, 26, 140)', /* pink*/
+                'rgb(102, 51, 0)' /* brown */
+
+            ],
+            
+            borderWidth: 2
+        }]
+    };
+    
+    const serbisyo_config = {
+        type: 'bar',
+        data: data5,
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            aspectRatio: 1,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Serbisyong Kailangan'
+                },
+                legend: {
+                    display: false,
+                }
+            }
+        }
+    };
+
+    const chartkasarian = new Chart(
+        document.getElementById('kasarianchart'),
+        kasarian_config
+        );
+    
+    const chartedad = new Chart(
+        document.getElementById('edadchart'),
+        edad_config
+        );
+    const chart_tinapos = new Chart(
+        document.getElementById('tinaposchart'),
+        tinapos_config
+        );
+    const chart_trabaho = new Chart(
+        document.getElementById('trabahochart'),
+        trabaho_config
+        );
+    const chart_serbisyo = new Chart(
+        document.getElementById('serbisyochart'),
+        serbisyo_config
+        );
+        
+
+    });
+</script>
+
+{% endblock %}
