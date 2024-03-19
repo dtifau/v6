@@ -70,7 +70,6 @@ main .resources_Card1>div {
 main .resources_Card1 .jumbotron1 .table-card {
     max-height: 35rem;
     overflow: auto;
-    max-width: 60rem;
 }
 
 main .resources_Card1>div:hover {

@@ -232,7 +232,6 @@
 
 
     .edit_profile_container .picture_top_container .form2{
-        border: #101010 solid 1px;
         left: 35% !important;
     }
 
@@ -240,6 +239,7 @@
         right: 2.1rem !important;
     }
 }
+
 
 @media screen and (max-width: 400px){
 
@@ -261,8 +261,8 @@
     }
     
     .edit_profile_container  .current_picture{
-        width: 10rem; 
-        height:10rem;
+        width: 8rem; 
+        height:8rem;
     }
 
     .edit_profile_container .form1{

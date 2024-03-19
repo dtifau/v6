@@ -266,6 +266,7 @@ main .manageUser table tr:last-child td {
     position: absolute;
     top:0.5rem;
     right: 1rem;
+    cursor: pointer;
 }
 
 /*FOR DEPARTMENT TABLE*/
