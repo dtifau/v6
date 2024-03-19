@@ -20,7 +20,7 @@
     --card-padding: 1.8rem;
     --padding-1: 1.2rem;
 
-    --box-shadow: 0 2rem 3rem var(--color-light)
+    --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
 
@@ -137,7 +137,19 @@ main .communityCard {
     max-height: 60%;
 }
 
+main .communityCard>div {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Updated box-shadow */
+    transition: box-shadow 0.3s ease; /* Added transition */
+    
+}
 
+main .communityCard>div:hover {
+    box-shadow: none;
+}
 
 /* file upload button */
 .communityCard input[type="file"]::file-selector-button {
