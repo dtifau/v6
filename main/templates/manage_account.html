@@ -315,12 +315,12 @@
                                 <form action="{{ url_for('dbModel.edit_department') }}" method="POST">
                                     <div class="form-group">
                                         <label>Acronym:</label>
-                                        <input type="text" class="form-control" id="acronym" name="new_department_A"
+                                        <input type="text" class="form-control acronym" name="new_department_A"
                                             value="{{row.department_A}}" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Department:</label>
-                                        <input type="text" class="form-control" id="department" name="new_department_F"
+                                        <input type="text" class="form-control department" name="new_department_F"
                                             value="{{row.department_F}}" required>
                                     </div>
 
@@ -354,11 +354,11 @@
                         <form action="{{ url_for('dbModel.add_department') }}" method="POST">
                             <div class="form-group">
                                 <label for="acronym">Acronym:</label>
-                                <input type="text" class="form-control" id="acronym2" name="department_A" required>
+                                <input type="text" class="form-control acronym" name="department_A" required>
                             </div>
                             <div class="form-group">
                                 <label for="department">Department:</label>
-                                <input type="text" class="form-control" id="department2" name="department_F" required>
+                                <input type="text" class="form-control department" name="department_F" required>
                             </div>
                             <div class="form-group">
                                 <button class="btn-submit btn-primary" type="submit">Add department</button>
@@ -379,28 +379,22 @@
 
 <!--FOR PREVIEW IMAGE-->
 <script>
- 
-document.addEventListener("DOMContentLoaded", function() {
-    // Get references to the input fields
-    var acronymInput = document.getElementById("acronym");
-    var departmentInput = document.getElementById("department");
-    var acronymInput2 = document.getElementById("acronym2");
-    var departmentInput2 = document.getElementById("department2");
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to convert input value to uppercase
+        function convertToUpperCase(e) {
+            e.target.value = e.target.value.toUpperCase();
+        }
 
-    // Function to convert input value to uppercase
-    function convertToUpperCase(e) {
-        e.target.value = e.target.value.toUpperCase();
-    }
+        // Attach event listeners to the input fields
+        document.querySelectorAll('.acronym, .department').forEach(function(input) {
+            input.addEventListener('input', convertToUpperCase);
+        });
 
-    // Attach event listeners to the input fields
-    acronymInput.addEventListener('input', convertToUpperCase);
-    departmentInput.addEventListener('input', convertToUpperCase);
-
-      // Attach event listeners to the input fields
-    acronymInput2.addEventListener('input', convertToUpperCase);
-    departmentInpu2t.addEventListener('input', convertToUpperCase);
-});
-
+          // Attach event listeners to the input fields
+          document.querySelectorAll('.acronym, .department').forEach(function(input) {
+            input.addEventListener('input', convertToUpperCase);
+        });
+    });
 
     function previewImage(event, previewId) {
         var reader = new FileReader();
