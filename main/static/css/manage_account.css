@@ -488,14 +488,12 @@ main .manageDepartment .jumbotron{
 
 .manageDepartment table td, .manageDepartment table th {
     text-align: left;
+   
 }
 
-.manageDepartment table td:last-child{
+.manageDepartment table td:last-child, .manageDepartment table th:last-child{
     text-align: center;
-}
-
-.manageDepartment table th:last-child{
-    text-align: center;
+ 
 }
 
 .manageDepartment .pass-toggle-container {
@@ -537,6 +535,7 @@ main .manageDepartment .jumbotron{
 .manageDepartment .jumbo{
     overflow: auto;
     max-height: 11rem;
+    width: 100%;
 }
 
 
